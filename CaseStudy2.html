@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Case Study 2</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">About</a>
+</li>
+<li>
+  <a href="CaseStudy1.html">Case Study 1</a>
+</li>
+<li>
+  <a href="CaseStudy2.html">Case Study 2</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Case Study 2</h1>
+
+</div>
+
+
+<p>DDSAnalytics has asked us to create a model to predict attrition and to find insights related to job roles. We have also been asked to create a model to predict salary. We will use KNN, Naive Bayes, and Multiple Linear Regression to build these models.</p>
+<pre class="r"><code>#import the data
+data = read.csv(file.choose()) #CaseStudy2-data
+head(data)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Age"],"name":[2],"type":["int"],"align":["right"]},{"label":["Attrition"],"name":[3],"type":["chr"],"align":["left"]},{"label":["BusinessTravel"],"name":[4],"type":["chr"],"align":["left"]},{"label":["DailyRate"],"name":[5],"type":["int"],"align":["right"]},{"label":["Department"],"name":[6],"type":["chr"],"align":["left"]},{"label":["DistanceFromHome"],"name":[7],"type":["int"],"align":["right"]},{"label":["Education"],"name":[8],"type":["int"],"align":["right"]},{"label":["EducationField"],"name":[9],"type":["chr"],"align":["left"]},{"label":["EmployeeCount"],"name":[10],"type":["int"],"align":["right"]},{"label":["EmployeeNumber"],"name":[11],"type":["int"],"align":["right"]},{"label":["EnvironmentSatisfaction"],"name":[12],"type":["int"],"align":["right"]},{"label":["Gender"],"name":[13],"type":["chr"],"align":["left"]},{"label":["HourlyRate"],"name":[14],"type":["int"],"align":["right"]},{"label":["JobInvolvement"],"name":[15],"type":["int"],"align":["right"]},{"label":["JobLevel"],"name":[16],"type":["int"],"align":["right"]},{"label":["JobRole"],"name":[17],"type":["chr"],"align":["left"]},{"label":["JobSatisfaction"],"name":[18],"type":["int"],"align":["right"]},{"label":["MaritalStatus"],"name":[19],"type":["chr"],"align":["left"]},{"label":["MonthlyIncome"],"name":[20],"type":["int"],"align":["right"]},{"label":["MonthlyRate"],"name":[21],"type":["int"],"align":["right"]},{"label":["NumCompaniesWorked"],"name":[22],"type":["int"],"align":["right"]},{"label":["Over18"],"name":[23],"type":["chr"],"align":["left"]},{"label":["OverTime"],"name":[24],"type":["chr"],"align":["left"]},{"label":["PercentSalaryHike"],"name":[25],"type":["int"],"align":["right"]},{"label":["PerformanceRating"],"name":[26],"type":["int"],"align":["right"]},{"label":["RelationshipSatisfaction"],"name":[27],"type":["int"],"align":["right"]},{"label":["StandardHours"],"name":[28],"type":["int"],"align":["right"]},{"label":["StockOptionLevel"],"name":[29],"type":["int"],"align":["right"]},{"label":["TotalWorkingYears"],"name":[30],"type":["int"],"align":["right"]},{"label":["TrainingTimesLastYear"],"name":[31],"type":["int"],"align":["right"]},{"label":["WorkLifeBalance"],"name":[32],"type":["int"],"align":["right"]},{"label":["YearsAtCompany"],"name":[33],"type":["int"],"align":["right"]},{"label":["YearsInCurrentRole"],"name":[34],"type":["int"],"align":["right"]},{"label":["YearsSinceLastPromotion"],"name":[35],"type":["int"],"align":["right"]},{"label":["YearsWithCurrManager"],"name":[36],"type":["int"],"align":["right"]}],"data":[{"1":"1","2":"32","3":"No","4":"Travel_Rarely","5":"117","6":"Sales","7":"13","8":"4","9":"Life Sciences","10":"1","11":"859","12":"2","13":"Male","14":"73","15":"3","16":"2","17":"Sales Executive","18":"4","19":"Divorced","20":"4403","21":"9250","22":"2","23":"Y","24":"No","25":"11","26":"3","27":"3","28":"80","29":"1","30":"8","31":"3","32":"2","33":"5","34":"2","35":"0","36":"3","_rn_":"1"},{"1":"2","2":"40","3":"No","4":"Travel_Rarely","5":"1308","6":"Research & Development","7":"14","8":"3","9":"Medical","10":"1","11":"1128","12":"3","13":"Male","14":"44","15":"2","16":"5","17":"Research Director","18":"3","19":"Single","20":"19626","21":"17544","22":"1","23":"Y","24":"No","25":"14","26":"3","27":"1","28":"80","29":"0","30":"21","31":"2","32":"4","33":"20","34":"7","35":"4","36":"9","_rn_":"2"},{"1":"3","2":"35","3":"No","4":"Travel_Frequently","5":"200","6":"Research & Development","7":"18","8":"2","9":"Life Sciences","10":"1","11":"1412","12":"3","13":"Male","14":"60","15":"3","16":"3","17":"Manufacturing Director","18":"4","19":"Single","20":"9362","21":"19944","22":"2","23":"Y","24":"No","25":"11","26":"3","27":"3","28":"80","29":"0","30":"10","31":"2","32":"3","33":"2","34":"2","35":"2","36":"2","_rn_":"3"},{"1":"4","2":"32","3":"No","4":"Travel_Rarely","5":"801","6":"Sales","7":"1","8":"4","9":"Marketing","10":"1","11":"2016","12":"3","13":"Female","14":"48","15":"3","16":"3","17":"Sales Executive","18":"4","19":"Married","20":"10422","21":"24032","22":"1","23":"Y","24":"No","25":"19","26":"3","27":"3","28":"80","29":"2","30":"14","31":"3","32":"3","33":"14","34":"10","35":"5","36":"7","_rn_":"4"},{"1":"5","2":"24","3":"No","4":"Travel_Frequently","5":"567","6":"Research & Development","7":"2","8":"1","9":"Technical Degree","10":"1","11":"1646","12":"1","13":"Female","14":"32","15":"3","16":"1","17":"Research Scientist","18":"4","19":"Single","20":"3760","21":"17218","22":"1","23":"Y","24":"Yes","25":"13","26":"3","27":"3","28":"80","29":"0","30":"6","31":"2","32":"3","33":"6","34":"3","35":"1","36":"3","_rn_":"5"},{"1":"6","2":"27","3":"No","4":"Travel_Frequently","5":"294","6":"Research & Development","7":"10","8":"2","9":"Life Sciences","10":"1","11":"733","12":"4","13":"Male","14":"32","15":"3","16":"3","17":"Manufacturing Director","18":"1","19":"Divorced","20":"8793","21":"4809","22":"1","23":"Y","24":"No","25":"21","26":"4","27":"3","28":"80","29":"2","30":"9","31":"4","32":"2","33":"9","34":"7","35":"1","36":"7","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>str(data)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    870 obs. of  36 variables:
+##  $ ID                      : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ Age                     : int  32 40 35 32 24 27 41 37 34 34 ...
+##  $ Attrition               : chr  &quot;No&quot; &quot;No&quot; &quot;No&quot; &quot;No&quot; ...
+##  $ BusinessTravel          : chr  &quot;Travel_Rarely&quot; &quot;Travel_Rarely&quot; &quot;Travel_Frequently&quot; &quot;Travel_Rarely&quot; ...
+##  $ DailyRate               : int  117 1308 200 801 567 294 1283 309 1333 653 ...
+##  $ Department              : chr  &quot;Sales&quot; &quot;Research &amp; Development&quot; &quot;Research &amp; Development&quot; &quot;Sales&quot; ...
+##  $ DistanceFromHome        : int  13 14 18 1 2 10 5 10 10 10 ...
+##  $ Education               : int  4 3 2 4 1 2 5 4 4 4 ...
+##  $ EducationField          : chr  &quot;Life Sciences&quot; &quot;Medical&quot; &quot;Life Sciences&quot; &quot;Marketing&quot; ...
+##  $ EmployeeCount           : int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ EmployeeNumber          : int  859 1128 1412 2016 1646 733 1448 1105 1055 1597 ...
+##  $ EnvironmentSatisfaction : int  2 3 3 3 1 4 2 4 3 4 ...
+##  $ Gender                  : chr  &quot;Male&quot; &quot;Male&quot; &quot;Male&quot; &quot;Female&quot; ...
+##  $ HourlyRate              : int  73 44 60 48 32 32 90 88 87 92 ...
+##  $ JobInvolvement          : int  3 2 3 3 3 3 4 2 3 2 ...
+##  $ JobLevel                : int  2 5 3 3 1 3 1 2 1 2 ...
+##  $ JobRole                 : chr  &quot;Sales Executive&quot; &quot;Research Director&quot; &quot;Manufacturing Director&quot; &quot;Sales Executive&quot; ...
+##  $ JobSatisfaction         : int  4 3 4 4 4 1 3 4 3 3 ...
+##  $ MaritalStatus           : chr  &quot;Divorced&quot; &quot;Single&quot; &quot;Single&quot; &quot;Married&quot; ...
+##  $ MonthlyIncome           : int  4403 19626 9362 10422 3760 8793 2127 6694 2220 5063 ...
+##  $ MonthlyRate             : int  9250 17544 19944 24032 17218 4809 5561 24223 18410 15332 ...
+##  $ NumCompaniesWorked      : int  2 1 2 1 1 1 2 2 1 1 ...
+##  $ Over18                  : chr  &quot;Y&quot; &quot;Y&quot; &quot;Y&quot; &quot;Y&quot; ...
+##  $ OverTime                : chr  &quot;No&quot; &quot;No&quot; &quot;No&quot; &quot;No&quot; ...
+##  $ PercentSalaryHike       : int  11 14 11 19 13 21 12 14 19 14 ...
+##  $ PerformanceRating       : int  3 3 3 3 3 4 3 3 3 3 ...
+##  $ RelationshipSatisfaction: int  3 1 3 3 3 3 1 3 4 2 ...
+##  $ StandardHours           : int  80 80 80 80 80 80 80 80 80 80 ...
+##  $ StockOptionLevel        : int  1 0 0 2 0 2 0 3 1 1 ...
+##  $ TotalWorkingYears       : int  8 21 10 14 6 9 7 8 1 8 ...
+##  $ TrainingTimesLastYear   : int  3 2 2 3 2 4 5 5 2 3 ...
+##  $ WorkLifeBalance         : int  2 4 3 3 3 2 2 3 3 2 ...
+##  $ YearsAtCompany          : int  5 20 2 14 6 9 4 1 1 8 ...
+##  $ YearsInCurrentRole      : int  2 7 2 10 3 7 2 0 1 2 ...
+##  $ YearsSinceLastPromotion : int  0 4 2 5 1 1 0 0 0 7 ...
+##  $ YearsWithCurrManager    : int  3 9 2 7 3 7 3 0 0 7 ...</code></pre>
+<pre class="r"><code>summary(data)</code></pre>
+<pre><code>##        ID             Age         Attrition         BusinessTravel    
+##  Min.   :  1.0   Min.   :18.00   Length:870         Length:870        
+##  1st Qu.:218.2   1st Qu.:30.00   Class :character   Class :character  
+##  Median :435.5   Median :35.00   Mode  :character   Mode  :character  
+##  Mean   :435.5   Mean   :36.83                                        
+##  3rd Qu.:652.8   3rd Qu.:43.00                                        
+##  Max.   :870.0   Max.   :60.00                                        
+##    DailyRate       Department        DistanceFromHome   Education    
+##  Min.   : 103.0   Length:870         Min.   : 1.000   Min.   :1.000  
+##  1st Qu.: 472.5   Class :character   1st Qu.: 2.000   1st Qu.:2.000  
+##  Median : 817.5   Mode  :character   Median : 7.000   Median :3.000  
+##  Mean   : 815.2                      Mean   : 9.339   Mean   :2.901  
+##  3rd Qu.:1165.8                      3rd Qu.:14.000   3rd Qu.:4.000  
+##  Max.   :1499.0                      Max.   :29.000   Max.   :5.000  
+##  EducationField     EmployeeCount EmployeeNumber   EnvironmentSatisfaction
+##  Length:870         Min.   :1     Min.   :   1.0   Min.   :1.000          
+##  Class :character   1st Qu.:1     1st Qu.: 477.2   1st Qu.:2.000          
+##  Mode  :character   Median :1     Median :1039.0   Median :3.000          
+##                     Mean   :1     Mean   :1029.8   Mean   :2.701          
+##                     3rd Qu.:1     3rd Qu.:1561.5   3rd Qu.:4.000          
+##                     Max.   :1     Max.   :2064.0   Max.   :4.000          
+##     Gender            HourlyRate     JobInvolvement     JobLevel    
+##  Length:870         Min.   : 30.00   Min.   :1.000   Min.   :1.000  
+##  Class :character   1st Qu.: 48.00   1st Qu.:2.000   1st Qu.:1.000  
+##  Mode  :character   Median : 66.00   Median :3.000   Median :2.000  
+##                     Mean   : 65.61   Mean   :2.723   Mean   :2.039  
+##                     3rd Qu.: 83.00   3rd Qu.:3.000   3rd Qu.:3.000  
+##                     Max.   :100.00   Max.   :4.000   Max.   :5.000  
+##    JobRole          JobSatisfaction MaritalStatus      MonthlyIncome  
+##  Length:870         Min.   :1.000   Length:870         Min.   : 1081  
+##  Class :character   1st Qu.:2.000   Class :character   1st Qu.: 2840  
+##  Mode  :character   Median :3.000   Mode  :character   Median : 4946  
+##                     Mean   :2.709                      Mean   : 6390  
+##                     3rd Qu.:4.000                      3rd Qu.: 8182  
+##                     Max.   :4.000                      Max.   :19999  
+##   MonthlyRate    NumCompaniesWorked    Over18            OverTime        
+##  Min.   : 2094   Min.   :0.000      Length:870         Length:870        
+##  1st Qu.: 8092   1st Qu.:1.000      Class :character   Class :character  
+##  Median :14074   Median :2.000      Mode  :character   Mode  :character  
+##  Mean   :14326   Mean   :2.728                                           
+##  3rd Qu.:20456   3rd Qu.:4.000                                           
+##  Max.   :26997   Max.   :9.000                                           
+##  PercentSalaryHike PerformanceRating RelationshipSatisfaction StandardHours
+##  Min.   :11.0      Min.   :3.000     Min.   :1.000            Min.   :80   
+##  1st Qu.:12.0      1st Qu.:3.000     1st Qu.:2.000            1st Qu.:80   
+##  Median :14.0      Median :3.000     Median :3.000            Median :80   
+##  Mean   :15.2      Mean   :3.152     Mean   :2.707            Mean   :80   
+##  3rd Qu.:18.0      3rd Qu.:3.000     3rd Qu.:4.000            3rd Qu.:80   
+##  Max.   :25.0      Max.   :4.000     Max.   :4.000            Max.   :80   
+##  StockOptionLevel TotalWorkingYears TrainingTimesLastYear WorkLifeBalance
+##  Min.   :0.0000   Min.   : 0.00     Min.   :0.000         Min.   :1.000  
+##  1st Qu.:0.0000   1st Qu.: 6.00     1st Qu.:2.000         1st Qu.:2.000  
+##  Median :1.0000   Median :10.00     Median :3.000         Median :3.000  
+##  Mean   :0.7839   Mean   :11.05     Mean   :2.832         Mean   :2.782  
+##  3rd Qu.:1.0000   3rd Qu.:15.00     3rd Qu.:3.000         3rd Qu.:3.000  
+##  Max.   :3.0000   Max.   :40.00     Max.   :6.000         Max.   :4.000  
+##  YearsAtCompany   YearsInCurrentRole YearsSinceLastPromotion
+##  Min.   : 0.000   Min.   : 0.000     Min.   : 0.000         
+##  1st Qu.: 3.000   1st Qu.: 2.000     1st Qu.: 0.000         
+##  Median : 5.000   Median : 3.000     Median : 1.000         
+##  Mean   : 6.962   Mean   : 4.205     Mean   : 2.169         
+##  3rd Qu.:10.000   3rd Qu.: 7.000     3rd Qu.: 3.000         
+##  Max.   :40.000   Max.   :18.000     Max.   :15.000         
+##  YearsWithCurrManager
+##  Min.   : 0.00       
+##  1st Qu.: 2.00       
+##  Median : 3.00       
+##  Mean   : 4.14       
+##  3rd Qu.: 7.00       
+##  Max.   :17.00</code></pre>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --</code></pre>
+<pre><code>## v ggplot2 3.3.3     v purrr   0.3.4
+## v tibble  3.0.4     v dplyr   1.0.2
+## v tidyr   1.1.2     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.0</code></pre>
+<pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(caret)</code></pre>
+<pre><code>## Loading required package: lattice</code></pre>
+<pre><code>## 
+## Attaching package: &#39;caret&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     lift</code></pre>
+<pre class="r"><code>library(e1071)
+library(class)
+library(GGally)</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;GGally&#39;:
+##   method from   
+##   +.gg   ggplot2</code></pre>
+<pre class="r"><code># Create mode function.
+getmode &lt;- function(v) {
+   uniqv &lt;- unique(v)
+   uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+
+#group by attrition and look at averages or modes
+data %&gt;% group_by(Attrition) %&gt;% summarize(
+  meanAge = mean(Age),
+  modeBusinessTravel = getmode(BusinessTravel),
+  modeDept = getmode(Department),
+  meanDistanceFromHome = mean(DistanceFromHome),
+  meanEd = mean(Education),
+  meanEnvSat = mean(EnvironmentSatisfaction),
+  modeGender = getmode(Gender),
+  meanHourly = mean(HourlyRate),
+  meanJobInvolvement = mean(JobInvolvement),
+  meanJobSat = mean(JobSatisfaction),
+  modeMarital = getmode(MaritalStatus),
+  meanCompaniesWorked = mean(NumCompaniesWorked),
+  modeOvertime = getmode(OverTime),
+  meanPercentSalaryHike = mean(PercentSalaryHike),
+  meanPerfRating = mean(PerformanceRating),
+  meanRelationshipSat = mean(RelationshipSatisfaction),
+  meanStandardHours = mean(StandardHours),
+  modeStock = getmode(StockOptionLevel),
+  meanWorkingYears = mean(TotalWorkingYears),
+  meanTrainings = mean(TrainingTimesLastYear),
+  meanWorkLife = mean(WorkLifeBalance),
+  meanYearsAtCo = mean(YearsAtCompany),
+  meanYearsinRole = mean(YearsInCurrentRole),
+  meanYearsSincePromo = mean(YearsSinceLastPromotion),
+  meanYearsWithMan = mean(YearsWithCurrManager)
+)</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Attrition"],"name":[1],"type":["chr"],"align":["left"]},{"label":["meanAge"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["modeBusinessTravel"],"name":[3],"type":["chr"],"align":["left"]},{"label":["modeDept"],"name":[4],"type":["chr"],"align":["left"]},{"label":["meanDistanceFromHome"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["meanEd"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["meanEnvSat"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["modeGender"],"name":[8],"type":["chr"],"align":["left"]},{"label":["meanHourly"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["meanJobInvolvement"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["meanJobSat"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["modeMarital"],"name":[12],"type":["chr"],"align":["left"]},{"label":["meanCompaniesWorked"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["modeOvertime"],"name":[14],"type":["chr"],"align":["left"]},{"label":["meanPercentSalaryHike"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["meanPerfRating"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["meanRelationshipSat"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["meanStandardHours"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["modeStock"],"name":[19],"type":["int"],"align":["right"]},{"label":["meanWorkingYears"],"name":[20],"type":["dbl"],"align":["right"]},{"label":["meanTrainings"],"name":[21],"type":["dbl"],"align":["right"]},{"label":["meanWorkLife"],"name":[22],"type":["dbl"],"align":["right"]},{"label":["meanYearsAtCo"],"name":[23],"type":["dbl"],"align":["right"]},{"label":["meanYearsinRole"],"name":[24],"type":["dbl"],"align":["right"]},{"label":["meanYearsSincePromo"],"name":[25],"type":["dbl"],"align":["right"]},{"label":["meanYearsWithMan"],"name":[26],"type":["dbl"],"align":["right"]}],"data":[{"1":"No","2":"37.41233","3":"Travel_Rarely","4":"Research & Development","5":"9.028767","6":"2.923288","7":"2.738356","8":"Male","9":"65.29178","10":"2.780822","11":"2.761644","12":"Married","13":"2.660274","14":"No","15":"15.17534","16":"3.149315","17":"2.726027","18":"80","19":"1","20":"11.602740","21":"2.867123","22":"2.809589","23":"7.301370","24":"4.453425","25":"2.175342","26":"4.369863"},{"1":"Yes","2":"33.78571","3":"Travel_Rarely","4":"Research & Development","5":"10.957143","6":"2.785714","7":"2.507143","8":"Male","9":"67.29286","10":"2.421429","11":"2.435714","12":"Single","13":"3.078571","14":"Yes","15":"15.32857","16":"3.164286","17":"2.607143","18":"80","19":"0","20":"8.185714","21":"2.650000","22":"2.635714","23":"5.192857","24":"2.907143","25":"2.135714","26":"2.942857"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>#things with apparently significant differences: no - yes
+#YearsWithCurrManager 1.4
+#YearsInCurrentRole 1.5
+#YearsAtCompany 2.1
+#TotalWorkingYears 3.5
+#stockOptionLevel 
+#overTime
+#NumCompaniesWorked -.4
+#MaritalStatus
+#JobSatisfaction .3
+#JobInvolvement .3
+#Age 3
+
+#make everything numeric
+for(i in 1:ncol(data)){
+  if (sapply(data, class)[i] == &quot;character&quot;){
+    data[,i] = as.factor(data[,i])
+  }
+}
+
+
+for(i in 1:ncol(data)){
+  data[,i] = as.numeric(data[,i])
+  }
+
+sapply(data, class)</code></pre>
+<pre><code>##                       ID                      Age                Attrition 
+##                &quot;numeric&quot;                &quot;numeric&quot;                &quot;numeric&quot; 
+##           BusinessTravel                DailyRate               Department 
+##                &quot;numeric&quot;                &quot;numeric&quot;                &quot;numeric&quot; 
+##         DistanceFromHome                Education           EducationField 
+##                &quot;numeric&quot;                &quot;numeric&quot;                &quot;numeric&quot; 
+##            EmployeeCount           EmployeeNumber  EnvironmentSatisfaction 
+##                &quot;numeric&quot;                &quot;numeric&quot;                &quot;numeric&quot; 
+##                   Gender               HourlyRate           JobInvolvement 
+##                &quot;numeric&quot;                &quot;numeric&quot;                &quot;numeric&quot; 
+##                 JobLevel                  JobRole          JobSatisfaction 
+##                &quot;numeric&quot;                &quot;numeric&quot;                &quot;numeric&quot; 
+##            MaritalStatus            MonthlyIncome              MonthlyRate 
+##                &quot;numeric&quot;                &quot;numeric&quot;                &quot;numeric&quot; 
+##       NumCompaniesWorked                   Over18                 OverTime 
+##                &quot;numeric&quot;                &quot;numeric&quot;                &quot;numeric&quot; 
+##        PercentSalaryHike        PerformanceRating RelationshipSatisfaction 
+##                &quot;numeric&quot;                &quot;numeric&quot;                &quot;numeric&quot; 
+##            StandardHours         StockOptionLevel        TotalWorkingYears 
+##                &quot;numeric&quot;                &quot;numeric&quot;                &quot;numeric&quot; 
+##    TrainingTimesLastYear          WorkLifeBalance           YearsAtCompany 
+##                &quot;numeric&quot;                &quot;numeric&quot;                &quot;numeric&quot; 
+##       YearsInCurrentRole  YearsSinceLastPromotion     YearsWithCurrManager 
+##                &quot;numeric&quot;                &quot;numeric&quot;                &quot;numeric&quot;</code></pre>
+<p>KNN</p>
+<pre class="r"><code>#use only most apparently relevant data
+data2 = data %&gt;% select(YearsWithCurrManager, YearsInCurrentRole, YearsAtCompany, TotalWorkingYears, StockOptionLevel, OverTime, NumCompaniesWorked, MaritalStatus, JobSatisfaction, JobInvolvement, Age, Attrition)
+
+splitPerc = .70
+
+trainIndices = sample(1:dim(data2)[1],round(splitPerc * dim(data2)[1]))
+train = data2[trainIndices,]
+test = data2[-trainIndices,]
+
+classifications = knn(train[,c(1,2,4)],test[,c(1,2,4)],train$Attrition,prob = TRUE, k = 5)
+CM = confusionMatrix(table(classifications,test$Attrition)) #14
+
+masterspec.df = data.frame(&quot;i&quot; = as.double(), &quot;j&quot; = as.double(), &quot;m&quot; = as.double(), &quot;spec&quot; = as.double())
+
+for(i in 1:11){
+  for(j in 1:11){
+    if (j == i) {next}
+    for(m in 1:11){
+      if (m == j | m == i) {next}
+      classifications = knn(train[,c(i,j,m)],test[,c(i,j,m)],train$Attrition,prob = TRUE, k = 5)
+      CM = confusionMatrix(table(classifications,test$Attrition))
+      masterspec.df = rbind(masterspec.df,c(i,j,m,CM$byClass[2]))
+
+    }
+  }
+}
+
+#masterspec.df %&gt;% arrange(X0) #best spec = 30</code></pre>
+<pre class="r"><code>#get rid of unneccessary columns: ID, EmployeeCount, Over18, StandardHours
+data3 = data[,-c(1,10,23,28)]
+
+#scale data
+for(i in 1:ncol(data3)){
+  if(i==2){next}
+  data3[,i] = scale(data3[,i])
+}
+
+colnames(data3) &lt;- make.names(colnames(data3))
+
+
+#create train and test sets
+splitPerc = .70
+
+trainIndices = sample(1:dim(data3)[1],round(splitPerc * dim(data3)[1]))
+train = data3[trainIndices,]
+test = data3[-trainIndices,]
+
+#try all the combinations of 3
+master.df = data.frame(&quot;i&quot; = as.double(), &quot;j&quot; = as.double(), &quot;m&quot; = as.double(), &quot;spec&quot; = as.double())
+
+#for(i in 1:32){
+#  if(i==2){next}
+#  for(j in 1:32){
+#    if (j == 2 | j &gt;= i) {next}
+#    for(m in 1:32){
+#      if (m == 2 | m &gt;= j) {next}
+#      classifications = knn(train[,c(i,j,m)],test[,c(i,j,m)],train$Attrition,prob = TRUE, k = 5)
+#      CM = confusionMatrix(table(classifications,test$Attrition))
+#      master.df = rbind(masterspec.df,c(i,j,m,CM$byClass[2]))
+
+#    }
+#  }
+#}
+
+#look at best specificity
+names(masterspec.df) = c(&quot;i&quot;,&quot;j&quot;,&quot;m&quot;,&quot;spec&quot;)
+#desc.masterspec.df  = masterspec.df %&gt;% arrange(-spec) 
+#view(desc.masterspec.df)
+
+#classifications = knn(train[,c(3,21,25)],test[,c(3,21,25)],train$Attrition,prob = TRUE, k = 5)
+#CM = confusionMatrix(table(classifications,test$Attrition))
+#CM</code></pre>
+<pre class="r"><code>#try all the combinations of 3 and average over several train and test sets
+splitPerc = .70
+iterations = 10
+numks = 5
+
+master.df = data.frame(&quot;n&quot; = as.double(), &quot;p&quot; = as.double(), &quot;i&quot; = as.double(), &quot;j&quot; = as.double(), &quot;m&quot; = as.double(), &quot;sens&quot; = as.double(), &quot;spec&quot; = as.double())
+
+#for(n in 1:iterations){
+#  set.seed(n)
+#  accs = data.frame(accuracy = numeric(90), k = numeric(90))
+#  trainIndices = sample(1:dim(data3)[1],round(splitPerc * dim(data3)[1]))
+#  train = data3[trainIndices,]
+#  test = data3[-trainIndices,]
+#  for(p in 1:numks){
+#    for(i in 1:32){
+#      if(i==2){next}
+#      for(j in 1:32){
+#        if (j == 2 | j &gt;= i) {next}
+#        for(m in 1:32){
+#          if (m == 2 | m &gt;= j) {next}
+#          classifications = knn(train[,c(i,j,m)],test[,c(i,j,m)],train$Attrition,prob = TRUE, k = p)
+#          CM = confusionMatrix(table(classifications,test$Attrition))
+#          master.df = rbind(master.df,c(n,p,i,j,m,CM$byClass[1],CM$byClass[2]))
+
+#       }
+#      }
+#    }
+#  }
+#}
+
+names(master.df) = c(&quot;n&quot;,&quot;k&quot;,&quot;i&quot;,&quot;j&quot;,&quot;m&quot;,&quot;sens&quot;,&quot;spec&quot;)
+#head(master.df)
+#view(master.df)
+
+#final.master.df = master.df %&gt;% group_by(i,j,m,k) %&gt;% summarize(meanSens = mean(sens), meanSpec = mean(spec))
+#final.master.df %&gt;% arrange(-meanSpec)
+
+#master.df %&gt;% arrange(-spec)</code></pre>
+<pre class="r"><code>#try one combo and average over many train and test sets and k&#39;s
+splitPerc = .70
+iterations = 100
+numks = 90
+
+masterSpec = matrix(nrow = iterations, ncol = numks)
+masterSens = matrix(nrow = iterations, ncol = numks)
+  
+for(j in 1:iterations)
+{
+accs = data.frame(accuracy = numeric(90), k = numeric(90))
+trainIndices = sample(1:dim(data3)[1],round(splitPerc * dim(data3)[1]))
+train = data3[trainIndices,]
+test = data3[-trainIndices,]
+for(i in 1:numks)
+{
+  classifications = knn(train[,c(15,25,21)],test[,c(15,25,21)],train$Attrition, prob = TRUE, k = i)
+  table(classifications,test$Attrition)
+  CM = confusionMatrix(table(classifications,test$Attrition))
+  masterSpec[j,i] = CM$byClass[2]
+  masterSens[j,i] = CM$byClass[1]
+}
+
+}
+
+MeanSpec = colMeans(masterSpec)
+MeanSens = colMeans(masterSens)
+
+plot(seq(1,numks,1),MeanSpec, type = &quot;l&quot;)</code></pre>
+<p><img src="CaseStudy2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>which.max(MeanSpec)</code></pre>
+<pre><code>## [1] 2</code></pre>
+<pre class="r"><code>max(MeanSpec)</code></pre>
+<pre><code>## [1] 0.2866638</code></pre>
+<p>NAIVE BAYES</p>
+<pre class="r"><code>#data3 is our scaled data from a couple chunks back
+#data3 = data[,-c(1,10,23,28)]
+
+#scale data
+#for(i in 1:ncol(data3)){
+#  if(i==2){next}
+#  data3[,i] = scale(data3[,i])
+#}
+
+#colnames(data3) &lt;- make.names(colnames(data3))
+
+#try with one train and test set and one combination 
+set.seed(1)
+trainIndicesNB = sample(seq(1:dim(data3)[1]),round(.7*dim(data3)[1]))
+trainNB = data3[trainIndicesNB,]
+testNB = data3[-trainIndicesNB,]
+
+
+trainNB$Attrition = as.factor(trainNB$Attrition)
+testNB$Attrition = as.factor(testNB$Attrition)
+
+
+model = naiveBayes(trainNB[,c(5,4,1)], trainNB$Attrition, laplace = 1)
+table(predict(model, testNB[,c(5,4,1)]), testNB$Attrition)</code></pre>
+<pre><code>##    
+##       1   2
+##   1 220  41
+##   2   0   0</code></pre>
+<pre class="r"><code>CM = confusionMatrix(table(predict(model, testNB[,c(5,4,1)]), testNB$Attrition))
+CM</code></pre>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##    
+##       1   2
+##   1 220  41
+##   2   0   0
+##                                          
+##                Accuracy : 0.8429         
+##                  95% CI : (0.793, 0.8849)
+##     No Information Rate : 0.8429         
+##     P-Value [Acc &gt; NIR] : 0.5416         
+##                                          
+##                   Kappa : 0              
+##                                          
+##  Mcnemar&#39;s Test P-Value : 4.185e-10      
+##                                          
+##             Sensitivity : 1.0000         
+##             Specificity : 0.0000         
+##          Pos Pred Value : 0.8429         
+##          Neg Pred Value :    NaN         
+##              Prevalence : 0.8429         
+##          Detection Rate : 0.8429         
+##    Detection Prevalence : 1.0000         
+##       Balanced Accuracy : 0.5000         
+##                                          
+##        &#39;Positive&#39; Class : 1              
+## </code></pre>
+<pre class="r"><code>#all the combos of 3
+set.seed(3)
+trainIndicesNB = sample(seq(1:dim(data3)[1]),round(.7*dim(data3)[1]))
+trainNB = data3[trainIndicesNB,]
+testNB = data3[-trainIndicesNB,]
+
+trainNB$Attrition = as.factor(trainNB$Attrition)
+testNB$Attrition = as.factor(testNB$Attrition)
+
+masterspecNB.df = data.frame(&quot;i&quot; = as.double(), &quot;j&quot; = as.double(), &quot;m&quot; = as.double(), &quot;spec&quot; = as.double())
+
+#for(i in 1:32){
+#  if(i == 2){next}
+#  for(j in 1:32){
+#    if(j == 2 | j &gt;= i){next}
+#    for(m in 1:32){
+#      if(m == 2 | m &gt;= j){next}
+#      model = naiveBayes(trainNB[,c(i,j,m)], trainNB$Attrition, laplace = 1)
+#      table(predict(model, testNB[,c(i,j,m)]), testNB$Attrition)
+#     CM = confusionMatrix(table(predict(model, testNB[,c(i,j,m)]), testNB$Attrition))
+#      masterspecNB.df = rbind(masterspecNB.df,c(i,j,m,CM$byClass[2]))
+#    }
+#  }
+#}
+  
+
+#look at best specificity
+names(masterspecNB.df) = c(&quot;i&quot;,&quot;j&quot;,&quot;m&quot;,&quot;spec&quot;)
+#desc.masterspecNB.df  = masterspecNB.df %&gt;% arrange(-spec) 
+#view(desc.masterspecNB.df)</code></pre>
+<pre class="r"><code>#average all combinations of 3 over many train and test sets
+
+iterations = 10
+
+masterNB.df = data.frame(&quot;p&quot; = as.double(), &quot;i&quot; = as.double(), &quot;j&quot; = as.double(), &quot;m&quot; = as.double(), &quot;sens&quot; = as.double(), &quot;spec&quot; = as.double())
+
+#for (p in 1:iterations)
+#{
+#set.seed(p)
+#trainIndicesNB = sample(seq(1:dim(data3)[1]),round(.7*dim(data3)[1]))
+#trainNB = data3[trainIndicesNB,]
+#testNB = data3[-trainIndicesNB,]
+
+#trainNB$Attrition = as.factor(trainNB$Attrition)
+#testNB$Attrition = as.factor(testNB$Attrition)
+
+
+#  for(i in 1:32){
+#    if(i == 2){next}
+#    for(j in 1:32){
+#      if(j == 2 | j &gt;= i){next}
+#      for(m in 1:32){
+#        if(m == 2 | m &gt;= j){next}
+#        model = naiveBayes(trainNB[,c(i,j,m)], trainNB$Attrition, laplace = 1)
+#        table(predict(model, testNB[,c(i,j,m)]), testNB$Attrition)
+#        CM = confusionMatrix(table(predict(model, testNB[,c(i,j,m)]), testNB$Attrition))
+#        masterNB.df = rbind(masterNB.df,c(p,i,j,m,CM$byClass[1],CM$byClass[2]))
+#      }
+#    }
+#  }
+#}
+
+names(masterNB.df) = c(&quot;k&quot;,&quot;i&quot;,&quot;j&quot;,&quot;m&quot;,&quot;sens&quot;,&quot;spec&quot;)
+#head(masterNB.df)
+#view(masterNB.df)
+
+#final.masterNB.df = masterNB.df %&gt;% group_by(i,j,m) %&gt;% summarize(meanSens = mean(sens), meanSpec = mean(spec))
+#final.masterNB.df %&gt;% arrange(-meanSpec)</code></pre>
+<pre class="r"><code>classifications = knn(train[,c(14,18,21,25,30)],test[,c(14,18,21,25,30)],train$Attrition,prob = TRUE, k = 1)
+confusionMatrix(table(classifications,test$Attrition)) </code></pre>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##                
+## classifications   1   2
+##               1 189  22
+##               2  33  17
+##                                           
+##                Accuracy : 0.7893          
+##                  95% CI : (0.7347, 0.8371)
+##     No Information Rate : 0.8506          
+##     P-Value [Acc &gt; NIR] : 0.9970          
+##                                           
+##                   Kappa : 0.2573          
+##                                           
+##  Mcnemar&#39;s Test P-Value : 0.1775          
+##                                           
+##             Sensitivity : 0.8514          
+##             Specificity : 0.4359          
+##          Pos Pred Value : 0.8957          
+##          Neg Pred Value : 0.3400          
+##              Prevalence : 0.8506          
+##          Detection Rate : 0.7241          
+##    Detection Prevalence : 0.8084          
+##       Balanced Accuracy : 0.6436          
+##                                           
+##        &#39;Positive&#39; Class : 1               
+## </code></pre>
+<pre class="r"><code>model = naiveBayes(trainNB[,c(18,21,14,25,20)], trainNB$Attrition, laplace = 1)
+table(predict(model, testNB[,c(18,21,14,25,30)]), testNB$Attrition)</code></pre>
+<pre><code>## Warning in predict.naiveBayes(model, testNB[, c(18, 21, 14, 25, 30)]): Type
+## mismatch between training and new data for variable &#39;NumCompaniesWorked&#39;. Did
+## you use factors with numeric labels for training, and numeric values for new
+## data?</code></pre>
+<pre><code>##    
+##       1   2
+##   1 196  30
+##   2  17  18</code></pre>
+<pre class="r"><code>CM = confusionMatrix(table(predict(model, testNB[,c(18,21)]), testNB$Attrition))</code></pre>
+<pre><code>## Warning in predict.naiveBayes(model, testNB[, c(18, 21)]): Type mismatch between
+## training and new data for variable &#39;JobLevel&#39;. Did you use factors with numeric
+## labels for training, and numeric values for new data?</code></pre>
+<pre><code>## Warning in predict.naiveBayes(model, testNB[, c(18, 21)]): Type mismatch between
+## training and new data for variable &#39;StockOptionLevel&#39;. Did you use factors with
+## numeric labels for training, and numeric values for new data?</code></pre>
+<pre><code>## Warning in predict.naiveBayes(model, testNB[, c(18, 21)]): Type mismatch between
+## training and new data for variable &#39;NumCompaniesWorked&#39;. Did you use factors
+## with numeric labels for training, and numeric values for new data?</code></pre>
+<pre class="r"><code>CM</code></pre>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##    
+##       1   2
+##   1 213  48
+##   2   0   0
+##                                           
+##                Accuracy : 0.8161          
+##                  95% CI : (0.7637, 0.8612)
+##     No Information Rate : 0.8161          
+##     P-Value [Acc &gt; NIR] : 0.5385          
+##                                           
+##                   Kappa : 0               
+##                                           
+##  Mcnemar&#39;s Test P-Value : 1.17e-11        
+##                                           
+##             Sensitivity : 1.0000          
+##             Specificity : 0.0000          
+##          Pos Pred Value : 0.8161          
+##          Neg Pred Value :    NaN          
+##              Prevalence : 0.8161          
+##          Detection Rate : 0.8161          
+##    Detection Prevalence : 1.0000          
+##       Balanced Accuracy : 0.5000          
+##                                           
+##        &#39;Positive&#39; Class : 1               
+## </code></pre>
+<p>We are starting over and trying Huy’s suggestion.</p>
+<pre class="r"><code>#install.packages(&quot;Boruta&quot;)
+library(Boruta)</code></pre>
+<pre><code>## Warning: package &#39;Boruta&#39; was built under R version 4.0.5</code></pre>
+<pre class="r"><code>#import fresh data
+work_data = read.csv(file.choose()) #CaseStudy2-data
+
+#make categorical variables factors
+for(i in 1:ncol(work_data)){
+  if (sapply(work_data, class)[i] == &quot;character&quot;){
+    work_data[,i] = as.factor(work_data[,i])
+  }
+}
+
+work_data$Education = as.factor(work_data$Education)
+work_data$JobLevel = as.factor(work_data$JobLevel)
+
+
+#get rid of unneccessary columns: ID, EmployeeCount, Over18, StandardHours
+boruta.train = Boruta(Attrition~.-c(ID,EmployeeCount,Over18,StandardHours), data=work_data)
+print(boruta.train)</code></pre>
+<pre><code>## Boruta performed 99 iterations in 19.96975 secs.
+##  13 attributes confirmed important: Age, JobInvolvement, JobLevel,
+## JobRole, MaritalStatus and 8 more;
+##  18 attributes confirmed unimportant: BusinessTravel, DailyRate,
+## Department, DistanceFromHome, Education and 13 more;
+##  4 tentative attributes left: EnvironmentSatisfaction, JobSatisfaction,
+## NumCompaniesWorked, YearsSinceLastPromotion;</code></pre>
+<pre class="r"><code>getSelectedAttributes(boruta.train, withTentative=F)</code></pre>
+<pre><code>##  [1] &quot;Age&quot;                  &quot;JobInvolvement&quot;       &quot;JobLevel&quot;            
+##  [4] &quot;JobRole&quot;              &quot;MaritalStatus&quot;        &quot;MonthlyIncome&quot;       
+##  [7] &quot;OverTime&quot;             &quot;StockOptionLevel&quot;     &quot;TotalWorkingYears&quot;   
+## [10] &quot;WorkLifeBalance&quot;      &quot;YearsAtCompany&quot;       &quot;YearsInCurrentRole&quot;  
+## [13] &quot;YearsWithCurrManager&quot;</code></pre>
+<pre class="r"><code>boruta.df = attStats(boruta.train)
+print(boruta.df)</code></pre>
+<pre><code>##                              meanImp   medianImp     minImp     maxImp
+## ID                        0.08980117 -0.21007407 -2.1105292  3.1275242
+## Age                       7.75942980  7.68268886  4.6886609 10.2542835
+## BusinessTravel            0.12205160  0.11825977 -1.3037194  1.3638664
+## DailyRate                -0.06698909  0.35356482 -1.5592716  1.3284903
+## Department                1.65368058  1.69265471  0.4468633  2.7701747
+## DistanceFromHome          1.13607729  0.96592491 -0.8486642  2.9237086
+## Education                 0.05896591  0.16838046 -2.4393485  2.0091980
+## EducationField            1.08316249  1.08953657 -0.7539198  3.5347429
+## EmployeeCount             0.00000000  0.00000000  0.0000000  0.0000000
+## EmployeeNumber           -0.38260353 -0.31554834 -1.8785122  1.8917193
+## EnvironmentSatisfaction   2.08085073  2.08548642 -0.2208223  4.7020698
+## Gender                   -0.08354339  0.04180366 -0.8912472  0.9279004
+## HourlyRate               -0.92382484 -1.09837239 -2.4277894  0.8447272
+## JobInvolvement            7.17270869  7.11386835  4.3906824  9.7281376
+## JobLevel                  6.28391472  6.33117346  4.3877269  8.5159999
+## JobRole                   6.02762321  6.11616998  3.1536613  8.3286361
+## JobSatisfaction           2.51995580  2.54700046 -0.5036711  5.1999927
+## MaritalStatus             7.87648312  7.79256703  4.9601103 11.6492215
+## MonthlyIncome            10.62820820 10.72442402  7.8912425 14.3186310
+## MonthlyRate               0.04410048  0.32201411 -1.1870997  1.0879944
+## NumCompaniesWorked        3.02783272  3.04768794  0.1173404  5.3064722
+## Over18                    0.00000000  0.00000000  0.0000000  0.0000000
+## OverTime                 18.21430751 18.42322767 13.6371684 21.0173242
+## PercentSalaryHike         1.11358041  1.14887656 -0.3095612  2.1059125
+## PerformanceRating        -0.68895003 -0.84971695 -2.6588069  1.1925371
+## RelationshipSatisfaction  0.57917859  0.83961121 -2.2200659  2.3511539
+## StandardHours             0.00000000  0.00000000  0.0000000  0.0000000
+## StockOptionLevel          9.64024268  9.59497462  7.0316180 12.0652303
+## TotalWorkingYears         7.99447916  8.00749041  5.0518424 10.5642010
+## TrainingTimesLastYear    -0.30437514 -0.23191937 -1.7891718  0.9847096
+## WorkLifeBalance           3.25944423  3.28750161  0.1004614  6.4475082
+## YearsAtCompany            6.94348795  7.00417255  4.7514789  9.2863230
+## YearsInCurrentRole        3.76612805  3.62618178  1.2442198  6.1929513
+## YearsSinceLastPromotion   1.88366761  1.84431420 -0.4701305  4.1665391
+## YearsWithCurrManager      5.60562263  5.59970034  1.8853945  8.1460892
+##                            normHits  decision
+## ID                       0.01010101  Rejected
+## Age                      1.00000000 Confirmed
+## BusinessTravel           0.00000000  Rejected
+## DailyRate                0.00000000  Rejected
+## Department               0.01010101  Rejected
+## DistanceFromHome         0.03030303  Rejected
+## Education                0.00000000  Rejected
+## EducationField           0.01010101  Rejected
+## EmployeeCount            0.00000000  Rejected
+## EmployeeNumber           0.00000000  Rejected
+## EnvironmentSatisfaction  0.34343434 Tentative
+## Gender                   0.00000000  Rejected
+## HourlyRate               0.00000000  Rejected
+## JobInvolvement           1.00000000 Confirmed
+## JobLevel                 1.00000000 Confirmed
+## JobRole                  0.97979798 Confirmed
+## JobSatisfaction          0.44444444 Tentative
+## MaritalStatus            1.00000000 Confirmed
+## MonthlyIncome            1.00000000 Confirmed
+## MonthlyRate              0.00000000  Rejected
+## NumCompaniesWorked       0.63636364 Tentative
+## Over18                   0.00000000  Rejected
+## OverTime                 1.00000000 Confirmed
+## PercentSalaryHike        0.00000000  Rejected
+## PerformanceRating        0.00000000  Rejected
+## RelationshipSatisfaction 0.01010101  Rejected
+## StandardHours            0.00000000  Rejected
+## StockOptionLevel         1.00000000 Confirmed
+## TotalWorkingYears        1.00000000 Confirmed
+## TrainingTimesLastYear    0.00000000  Rejected
+## WorkLifeBalance          0.70707071 Confirmed
+## YearsAtCompany           1.00000000 Confirmed
+## YearsInCurrentRole       0.80808081 Confirmed
+## YearsSinceLastPromotion  0.35353535 Tentative
+## YearsWithCurrManager     0.97979798 Confirmed</code></pre>
+<p>KNN</p>
+<pre class="r"><code>#make factors numerical
+for(i in 1:ncol(work_data)){
+  if (sapply(work_data, class)[i] == &quot;factor&quot;){
+    work_data[,i] = as.numeric(work_data[,i])
+  }
+}
+
+#scale data
+for(i in 1:ncol(work_data)){
+  if(i==2){next}
+  work_data[,i] = scale(work_data[,i])
+}
+
+colnames(work_data) &lt;- make.names(colnames(work_data))
+
+#make train and test sets
+splitPerc = .70
+
+work_trainIndices = sample(1:dim(work_data)[1],round(splitPerc * dim(work_data)[1]))
+work_train = work_data[work_trainIndices,]
+work_test = work_data[-work_trainIndices,]
+
+
+#model
+classifications = knn(work_train[,c(&quot;Age&quot;,&quot;JobInvolvement&quot;,&quot;JobLevel&quot;,&quot;JobRole&quot;,&quot;MaritalStatus&quot;,&quot;MonthlyIncome&quot;,&quot;OverTime&quot;,&quot;StockOptionLevel&quot;,&quot;TotalWorkingYears&quot;,&quot;WorkLifeBalance&quot;,&quot;YearsAtCompany&quot;,&quot;YearsWithCurrManager&quot;)],work_test[,c(&quot;Age&quot;,&quot;JobInvolvement&quot;,&quot;JobLevel&quot;,&quot;JobRole&quot;,&quot;MaritalStatus&quot;,&quot;MonthlyIncome&quot;,&quot;OverTime&quot;,&quot;StockOptionLevel&quot;,&quot;TotalWorkingYears&quot;,&quot;WorkLifeBalance&quot;,&quot;YearsAtCompany&quot;,&quot;YearsWithCurrManager&quot;)],work_train$Attrition,prob = TRUE, k = 3)
+confusionMatrix(table(classifications,work_test$Attrition)) </code></pre>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##                     
+## classifications      -0.437676117913082 2.28216832911821
+##   -0.437676117913082                212               34
+##   2.28216832911821                    8                7
+##                                             
+##                Accuracy : 0.8391            
+##                  95% CI : (0.7888, 0.8815)  
+##     No Information Rate : 0.8429            
+##     P-Value [Acc &gt; NIR] : 0.6076663         
+##                                             
+##                   Kappa : 0.1811            
+##                                             
+##  Mcnemar&#39;s Test P-Value : 0.0001145         
+##                                             
+##             Sensitivity : 0.9636            
+##             Specificity : 0.1707            
+##          Pos Pred Value : 0.8618            
+##          Neg Pred Value : 0.4667            
+##              Prevalence : 0.8429            
+##          Detection Rate : 0.8123            
+##    Detection Prevalence : 0.9425            
+##       Balanced Accuracy : 0.5672            
+##                                             
+##        &#39;Positive&#39; Class : -0.437676117913082
+## </code></pre>
+<p>NAIVE BAYES</p>
+<pre class="r"><code>set.seed(4)
+work_trainIndicesNB = sample(seq(1:dim(work_data)[1]),round(.7*dim(work_data)[1]))
+work_trainNB = work_data[work_trainIndicesNB,]
+work_testNB = work_data[-work_trainIndicesNB,]
+
+
+work_trainNB$Attrition = as.factor(work_trainNB$Attrition)
+work_testNB$Attrition = as.factor(work_testNB$Attrition)
+
+
+model = naiveBayes(work_trainNB[,c(&quot;Age&quot;,&quot;JobInvolvement&quot;,&quot;JobLevel&quot;,&quot;JobRole&quot;,&quot;MaritalStatus&quot;,&quot;MonthlyIncome&quot;,&quot;OverTime&quot;,&quot;StockOptionLevel&quot;,&quot;TotalWorkingYears&quot;,&quot;WorkLifeBalance&quot;,&quot;YearsAtCompany&quot;,&quot;YearsWithCurrManager&quot;,&quot;JobSatisfaction&quot;, &quot;NumCompaniesWorked&quot;)], work_trainNB$Attrition, laplace = 1)
+table(predict(model, work_testNB[,c(&quot;Age&quot;,&quot;JobInvolvement&quot;,&quot;JobLevel&quot;,&quot;JobRole&quot;,&quot;MaritalStatus&quot;,&quot;MonthlyIncome&quot;,&quot;OverTime&quot;,&quot;StockOptionLevel&quot;,&quot;TotalWorkingYears&quot;,&quot;WorkLifeBalance&quot;,&quot;YearsAtCompany&quot;,&quot;YearsWithCurrManager&quot;,&quot;JobSatisfaction&quot;, &quot;NumCompaniesWorked&quot;)]), work_testNB$Attrition)</code></pre>
+<pre><code>##                     
+##                      -0.437676117913082 2.28216832911821
+##   -0.437676117913082                214               13
+##   2.28216832911821                   13               21</code></pre>
+<pre class="r"><code>CM = confusionMatrix(table(predict(model,work_testNB[,c(&quot;Age&quot;,&quot;JobInvolvement&quot;,&quot;JobLevel&quot;,&quot;JobRole&quot;,&quot;MaritalStatus&quot;,&quot;MonthlyIncome&quot;,&quot;OverTime&quot;,&quot;StockOptionLevel&quot;,&quot;TotalWorkingYears&quot;,&quot;WorkLifeBalance&quot;,&quot;YearsAtCompany&quot;,&quot;YearsWithCurrManager&quot;,&quot;JobSatisfaction&quot;, &quot;NumCompaniesWorked&quot;)]), work_testNB$Attrition))
+CM #57.14</code></pre>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##                     
+##                      -0.437676117913082 2.28216832911821
+##   -0.437676117913082                214               13
+##   2.28216832911821                   13               21
+##                                             
+##                Accuracy : 0.9004            
+##                  95% CI : (0.8575, 0.9339)  
+##     No Information Rate : 0.8697            
+##     P-Value [Acc &gt; NIR] : 0.0803            
+##                                             
+##                   Kappa : 0.5604            
+##                                             
+##  Mcnemar&#39;s Test P-Value : 1.0000            
+##                                             
+##             Sensitivity : 0.9427            
+##             Specificity : 0.6176            
+##          Pos Pred Value : 0.9427            
+##          Neg Pred Value : 0.6176            
+##              Prevalence : 0.8697            
+##          Detection Rate : 0.8199            
+##    Detection Prevalence : 0.8697            
+##       Balanced Accuracy : 0.7802            
+##                                             
+##        &#39;Positive&#39; Class : -0.437676117913082
+## </code></pre>
+<pre class="r"><code>#model = naiveBayes(work_trainNB[,c(&quot;JobInvolvement&quot;,&quot;JobLevel&quot;,&quot;JobRole&quot;,&quot;MaritalStatus&quot;,&quot;MonthlyIncome&quot;,&quot;OverTime&quot;,&quot;StockOptionLevel&quot;,&quot;TotalWorkingYears&quot;,&quot;WorkLifeBalance&quot;,&quot;YearsAtCompany&quot;,&quot;YearsWithCurrManager&quot;,&quot;JobSatisfaction&quot;, &quot;NumCompaniesWorked&quot;)], work_trainNB$Attrition, laplace = 1)
+#table(predict(model, work_testNB[,c(&quot;JobInvolvement&quot;,&quot;JobLevel&quot;,&quot;JobRole&quot;,&quot;MaritalStatus&quot;,&quot;MonthlyIncome&quot;,&quot;OverTime&quot;,&quot;StockOptionLevel&quot;,&quot;TotalWorkingYears&quot;,&quot;WorkLifeBalance&quot;,&quot;YearsAtCompany&quot;,&quot;YearsWithCurrManager&quot;,&quot;JobSatisfaction&quot;, &quot;NumCompaniesWorked&quot;)]), work_testNB$Attrition)
+#CM = confusionMatrix(table(predict(model,work_testNB[,c(&quot;JobInvolvement&quot;,&quot;JobLevel&quot;,&quot;JobRole&quot;,&quot;MaritalStatus&quot;,&quot;MonthlyIncome&quot;,&quot;OverTime&quot;,&quot;StockOptionLevel&quot;,&quot;TotalWorkingYears&quot;,&quot;WorkLifeBalance&quot;,&quot;YearsAtCompany&quot;,&quot;YearsWithCurrManager&quot;,&quot;JobSatisfaction&quot;, &quot;NumCompaniesWorked&quot;)]), work_testNB$Attrition))
+#CM #54.76
+
+#model = naiveBayes(work_trainNB[,c(&quot;JobLevel&quot;,&quot;JobRole&quot;,&quot;MaritalStatus&quot;,&quot;MonthlyIncome&quot;,&quot;OverTime&quot;,&quot;StockOptionLevel&quot;,&quot;TotalWorkingYears&quot;,&quot;WorkLifeBalance&quot;,&quot;YearsAtCompany&quot;,&quot;YearsWithCurrManager&quot;,&quot;JobSatisfaction&quot;, &quot;NumCompaniesWorked&quot;)], work_trainNB$Attrition, laplace = 1)
+#table(predict(model, work_testNB[,c(&quot;JobLevel&quot;,&quot;JobRole&quot;,&quot;MaritalStatus&quot;,&quot;MonthlyIncome&quot;,&quot;OverTime&quot;,&quot;StockOptionLevel&quot;,&quot;TotalWorkingYears&quot;,&quot;WorkLifeBalance&quot;,&quot;YearsAtCompany&quot;,&quot;YearsWithCurrManager&quot;,&quot;JobSatisfaction&quot;, &quot;NumCompaniesWorked&quot;)]), work_testNB$Attrition)
+#CM = confusionMatrix(table(predict(model,work_testNB[,c(&quot;JobLevel&quot;,&quot;JobRole&quot;,&quot;MaritalStatus&quot;,&quot;MonthlyIncome&quot;,&quot;OverTime&quot;,&quot;StockOptionLevel&quot;,&quot;TotalWorkingYears&quot;,&quot;WorkLifeBalance&quot;,&quot;YearsAtCompany&quot;,&quot;YearsWithCurrManager&quot;,&quot;JobSatisfaction&quot;, &quot;NumCompaniesWorked&quot;)]), work_testNB$Attrition))
+#CM #52.38</code></pre>
+<p>We will now determine the top three contributors.</p>
+<pre class="r"><code>#get relevant columns
+work_loop = work_data %&gt;% select(Attrition, Age, JobInvolvement, JobLevel, JobRole, JobSatisfaction, MaritalStatus, MonthlyIncome, NumCompaniesWorked, OverTime, StockOptionLevel, TotalWorkingYears, WorkLifeBalance, YearsAtCompany, YearsWithCurrManager)
+head(work_loop)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Attrition"],"name":[1],"type":["dbl[,1]"],"align":["right"]},{"label":["Age"],"name":[2],"type":["int"],"align":["right"]},{"label":["JobInvolvement"],"name":[3],"type":["dbl[,1]"],"align":["right"]},{"label":["JobLevel"],"name":[4],"type":["dbl[,1]"],"align":["right"]},{"label":["JobRole"],"name":[5],"type":["dbl[,1]"],"align":["right"]},{"label":["JobSatisfaction"],"name":[6],"type":["dbl[,1]"],"align":["right"]},{"label":["MaritalStatus"],"name":[7],"type":["dbl[,1]"],"align":["right"]},{"label":["MonthlyIncome"],"name":[8],"type":["dbl[,1]"],"align":["right"]},{"label":["NumCompaniesWorked"],"name":[9],"type":["dbl[,1]"],"align":["right"]},{"label":["OverTime"],"name":[10],"type":["dbl[,1]"],"align":["right"]},{"label":["StockOptionLevel"],"name":[11],"type":["dbl[,1]"],"align":["right"]},{"label":["TotalWorkingYears"],"name":[12],"type":["dbl[,1]"],"align":["right"]},{"label":["WorkLifeBalance"],"name":[13],"type":["dbl[,1]"],"align":["right"]},{"label":["YearsAtCompany"],"name":[14],"type":["dbl[,1]"],"align":["right"]},{"label":["YearsWithCurrManager"],"name":[15],"type":["dbl[,1]"],"align":["right"]}],"data":[{"1":"-0.4376761","2":"32","3":"0.393688","4":"-0.03584995","5":"1.0020880","6":"1.1581741","7":"-1.5091992","8":"-0.4322305","9":"-0.2886739","10":"-0.6381993","11":"0.2519247","12":"-0.4063094","13":"-1.0978013","14":"-0.3258690","15":"-0.3189953","_rn_":"1"},{"1":"-0.4376761","2":"40","3":"-1.027509","4":"2.71616062","5":"0.1892054","6":"0.2609244","7":"1.2608500","8":"2.8787757","9":"-0.6854296","10":"-0.6381993","11":"-0.9138971","12":"1.3238710","13":"1.7112786","14":"2.1653966","15":"1.3595887","_rn_":"2"},{"1":"-0.4376761","2":"35","3":"0.393688","4":"0.88148691","5":"-0.2172359","6":"1.1581741","7":"1.2608500","8":"0.6463532","9":"-0.2886739","10":"-0.6381993","11":"-0.9138971","12":"-0.1401278","13":"0.3067386","14":"-0.8241221","15":"-0.5987593","_rn_":"3"},{"1":"-0.4376761","2":"32","3":"0.393688","4":"0.88148691","5":"1.0020880","6":"1.1581741","7":"-0.1241746","8":"0.8769035","9":"-0.6854296","10":"-0.6381993","11":"1.4177465","12":"0.3922354","13":"0.3067386","14":"1.1688904","15":"0.8000607","_rn_":"4"},{"1":"-0.4376761","2":"24","3":"0.393688","4":"-0.95318680","5":"0.5956467","6":"1.1581741","7":"1.2608500","8":"-0.5720831","9":"-0.6854296","10":"1.5651077","11":"-0.9138971","12":"-0.6724910","13":"0.3067386","14":"-0.1597846","15":"-0.3189953","_rn_":"5"},{"1":"-0.4376761","2":"27","3":"0.393688","4":"0.88148691","5":"-0.2172359","6":"-1.5335752","7":"-1.5091992","8":"0.5225956","9":"-0.6854296","10":"-0.6381993","11":"1.4177465","12":"-0.2732186","13":"-1.0978013","14":"0.3384685","15":"0.8000607","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>set.seed(4)
+
+wl_trainIndicesNB = sample(seq(1:dim(work_loop)[1]),round(.7*dim(work_loop)[1]))
+wl_trainNB = work_loop[wl_trainIndicesNB,]
+wl_testNB = work_loop[-wl_trainIndicesNB,]
+
+
+wl_trainNB$Attrition = as.factor(wl_trainNB$Attrition)
+wl_testNB$Attrition = as.factor(wl_testNB$Attrition)
+
+master_work.df = data.frame(&quot;i&quot; = as.double(), &quot;j&quot; = as.double(), &quot;m&quot; = as.double(), &quot;spec&quot; = as.double())
+
+
+for(i in 2:14){
+  for(j in 2:14){
+    if (j &gt;= i) {next}
+    for(m in 2:14){
+      if(m &gt;= j) {next}
+          model = naiveBayes(wl_trainNB[,c(i,j,m)], wl_trainNB$Attrition, laplace = 1)
+          table(predict(model, wl_testNB[,c(i,j,m)]), wl_testNB$Attrition)
+          CM = confusionMatrix(table(predict(model, wl_testNB[,c(i,j,m)]), wl_testNB$Attrition))
+          master_work.df = rbind(master_work.df,c(i,j,m,CM$byClass[2]))
+        }
+      }
+    }
+
+#look at best specificity
+names(master_work.df) = c(&quot;i&quot;,&quot;j&quot;,&quot;m&quot;,&quot;spec&quot;)
+desc.master_work.df  = master_work.df %&gt;% arrange(-spec) 
+head(desc.master_work.df) #top 3 contributors are JobLevel, MonthlyIncome, and OverTime</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["i"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["j"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["m"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["spec"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"10","2":"8","3":"4","4":"0.2941176","_rn_":"1"},{"1":"12","2":"10","3":"4","4":"0.2352941","_rn_":"2"},{"1":"12","2":"10","3":"8","4":"0.2352941","_rn_":"3"},{"1":"7","2":"3","3":"2","4":"0.2058824","_rn_":"4"},{"1":"10","2":"6","3":"4","4":"0.2058824","_rn_":"5"},{"1":"10","2":"8","3":"6","4":"0.2058824","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>The best model we found was a Naive Bayes model with Age, JobInvolvement, JobLevel, JobRole, JobSatisfaction, MaritalStatus, MonthlyIncome, NumCompaniesWorked, OverTime, StockOptionLevel, TotalWorkingYears, workLifeBalance, YearsAtCompany, and YearWithCurrManager as predictors. Of those, JobLevel, MonthlyIncome, and OverTime contribute most to turnover.</p>
+<pre class="r"><code>#create predictions
+compset_noAtt = read.csv(file.choose()) #CaseStudy2CompSet No Attrition
+
+for(i in 1:ncol(compset_noAtt)){
+  if (sapply(compset_noAtt, class)[i] == &quot;character&quot;){
+    compset_noAtt[,i] = as.factor(compset_noAtt[,i])
+  }
+}
+
+compset_noAtt$Education = as.factor(compset_noAtt$Education)
+compset_noAtt$JobLevel = as.factor(compset_noAtt$JobLevel)
+
+for(i in 1:ncol(compset_noAtt)){
+  if(sapply(compset_noAtt, class)[i] == &quot;factor&quot;){
+    compset_noAtt[,i] = as.numeric(compset_noAtt[,i])
+  }
+}
+
+model = naiveBayes(work_trainNB[,c(&quot;Age&quot;,&quot;JobInvolvement&quot;,&quot;JobLevel&quot;,&quot;JobRole&quot;,&quot;MaritalStatus&quot;,&quot;MonthlyIncome&quot;,&quot;OverTime&quot;,&quot;StockOptionLevel&quot;,&quot;TotalWorkingYears&quot;,&quot;WorkLifeBalance&quot;,&quot;YearsAtCompany&quot;,&quot;YearsWithCurrManager&quot;,&quot;JobSatisfaction&quot;, &quot;NumCompaniesWorked&quot;)], work_trainNB$Attrition, laplace = 1)
+
+
+att_preds = data.frame(&quot;ID&quot; = compset_noAtt$ID, &quot;Attrition&quot; = predict(model, compset_noAtt))
+head(att_preds)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Attrition"],"name":[2],"type":["fct"],"align":["left"]}],"data":[{"1":"1171","2":"2.28216832911821","_rn_":"1"},{"1":"1172","2":"-0.437676117913082","_rn_":"2"},{"1":"1173","2":"-0.437676117913082","_rn_":"3"},{"1":"1174","2":"2.28216832911821","_rn_":"4"},{"1":"1175","2":"2.28216832911821","_rn_":"5"},{"1":"1176","2":"2.28216832911821","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>levels(att_preds$Attrition) = list(&quot;No&quot; = 2.28216832911821, &quot;Yes&quot; = -0.437676117913082)
+
+
+write.csv(att_preds, &quot;Case2PredictionsEndler Attrition.csv&quot;, row.names=FALSE)</code></pre>
+<p>LINEAR REGRESSION</p>
+<pre class="r"><code>work_data2 = read.csv(file.choose()) #CaseStudy2-data
+head(work_data2)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Age"],"name":[2],"type":["int"],"align":["right"]},{"label":["Attrition"],"name":[3],"type":["chr"],"align":["left"]},{"label":["BusinessTravel"],"name":[4],"type":["chr"],"align":["left"]},{"label":["DailyRate"],"name":[5],"type":["int"],"align":["right"]},{"label":["Department"],"name":[6],"type":["chr"],"align":["left"]},{"label":["DistanceFromHome"],"name":[7],"type":["int"],"align":["right"]},{"label":["Education"],"name":[8],"type":["int"],"align":["right"]},{"label":["EducationField"],"name":[9],"type":["chr"],"align":["left"]},{"label":["EmployeeCount"],"name":[10],"type":["int"],"align":["right"]},{"label":["EmployeeNumber"],"name":[11],"type":["int"],"align":["right"]},{"label":["EnvironmentSatisfaction"],"name":[12],"type":["int"],"align":["right"]},{"label":["Gender"],"name":[13],"type":["chr"],"align":["left"]},{"label":["HourlyRate"],"name":[14],"type":["int"],"align":["right"]},{"label":["JobInvolvement"],"name":[15],"type":["int"],"align":["right"]},{"label":["JobLevel"],"name":[16],"type":["int"],"align":["right"]},{"label":["JobRole"],"name":[17],"type":["chr"],"align":["left"]},{"label":["JobSatisfaction"],"name":[18],"type":["int"],"align":["right"]},{"label":["MaritalStatus"],"name":[19],"type":["chr"],"align":["left"]},{"label":["MonthlyIncome"],"name":[20],"type":["int"],"align":["right"]},{"label":["MonthlyRate"],"name":[21],"type":["int"],"align":["right"]},{"label":["NumCompaniesWorked"],"name":[22],"type":["int"],"align":["right"]},{"label":["Over18"],"name":[23],"type":["chr"],"align":["left"]},{"label":["OverTime"],"name":[24],"type":["chr"],"align":["left"]},{"label":["PercentSalaryHike"],"name":[25],"type":["int"],"align":["right"]},{"label":["PerformanceRating"],"name":[26],"type":["int"],"align":["right"]},{"label":["RelationshipSatisfaction"],"name":[27],"type":["int"],"align":["right"]},{"label":["StandardHours"],"name":[28],"type":["int"],"align":["right"]},{"label":["StockOptionLevel"],"name":[29],"type":["int"],"align":["right"]},{"label":["TotalWorkingYears"],"name":[30],"type":["int"],"align":["right"]},{"label":["TrainingTimesLastYear"],"name":[31],"type":["int"],"align":["right"]},{"label":["WorkLifeBalance"],"name":[32],"type":["int"],"align":["right"]},{"label":["YearsAtCompany"],"name":[33],"type":["int"],"align":["right"]},{"label":["YearsInCurrentRole"],"name":[34],"type":["int"],"align":["right"]},{"label":["YearsSinceLastPromotion"],"name":[35],"type":["int"],"align":["right"]},{"label":["YearsWithCurrManager"],"name":[36],"type":["int"],"align":["right"]}],"data":[{"1":"1","2":"32","3":"No","4":"Travel_Rarely","5":"117","6":"Sales","7":"13","8":"4","9":"Life Sciences","10":"1","11":"859","12":"2","13":"Male","14":"73","15":"3","16":"2","17":"Sales Executive","18":"4","19":"Divorced","20":"4403","21":"9250","22":"2","23":"Y","24":"No","25":"11","26":"3","27":"3","28":"80","29":"1","30":"8","31":"3","32":"2","33":"5","34":"2","35":"0","36":"3","_rn_":"1"},{"1":"2","2":"40","3":"No","4":"Travel_Rarely","5":"1308","6":"Research & Development","7":"14","8":"3","9":"Medical","10":"1","11":"1128","12":"3","13":"Male","14":"44","15":"2","16":"5","17":"Research Director","18":"3","19":"Single","20":"19626","21":"17544","22":"1","23":"Y","24":"No","25":"14","26":"3","27":"1","28":"80","29":"0","30":"21","31":"2","32":"4","33":"20","34":"7","35":"4","36":"9","_rn_":"2"},{"1":"3","2":"35","3":"No","4":"Travel_Frequently","5":"200","6":"Research & Development","7":"18","8":"2","9":"Life Sciences","10":"1","11":"1412","12":"3","13":"Male","14":"60","15":"3","16":"3","17":"Manufacturing Director","18":"4","19":"Single","20":"9362","21":"19944","22":"2","23":"Y","24":"No","25":"11","26":"3","27":"3","28":"80","29":"0","30":"10","31":"2","32":"3","33":"2","34":"2","35":"2","36":"2","_rn_":"3"},{"1":"4","2":"32","3":"No","4":"Travel_Rarely","5":"801","6":"Sales","7":"1","8":"4","9":"Marketing","10":"1","11":"2016","12":"3","13":"Female","14":"48","15":"3","16":"3","17":"Sales Executive","18":"4","19":"Married","20":"10422","21":"24032","22":"1","23":"Y","24":"No","25":"19","26":"3","27":"3","28":"80","29":"2","30":"14","31":"3","32":"3","33":"14","34":"10","35":"5","36":"7","_rn_":"4"},{"1":"5","2":"24","3":"No","4":"Travel_Frequently","5":"567","6":"Research & Development","7":"2","8":"1","9":"Technical Degree","10":"1","11":"1646","12":"1","13":"Female","14":"32","15":"3","16":"1","17":"Research Scientist","18":"4","19":"Single","20":"3760","21":"17218","22":"1","23":"Y","24":"Yes","25":"13","26":"3","27":"3","28":"80","29":"0","30":"6","31":"2","32":"3","33":"6","34":"3","35":"1","36":"3","_rn_":"5"},{"1":"6","2":"27","3":"No","4":"Travel_Frequently","5":"294","6":"Research & Development","7":"10","8":"2","9":"Life Sciences","10":"1","11":"733","12":"4","13":"Male","14":"32","15":"3","16":"3","17":"Manufacturing Director","18":"1","19":"Divorced","20":"8793","21":"4809","22":"1","23":"Y","24":"No","25":"21","26":"4","27":"3","28":"80","29":"2","30":"9","31":"4","32":"2","33":"9","34":"7","35":"1","36":"7","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>#make categorical variables factors
+for(i in 1:ncol(work_data2)){
+  if (sapply(work_data2, class)[i] == &quot;character&quot;){
+    work_data2[,i] = as.factor(work_data2[,i])
+  }
+}
+
+work_data2$Education = as.factor(work_data2$Education)
+work_data2$JobLevel = as.factor(work_data2$JobLevel)
+
+
+#get rid of unneccessary columns: ID, EmployeeCount, Over18, StandardHours
+boruta.train = Boruta(MonthlyIncome~.-c(ID,EmployeeCount,Over18,StandardHours), data=work_data2)
+print(boruta.train)</code></pre>
+<pre><code>## Boruta performed 99 iterations in 23.52827 secs.
+##  12 attributes confirmed important: Age, Attrition, Department,
+## Education, JobLevel and 7 more;
+##  22 attributes confirmed unimportant: DailyRate, DistanceFromHome,
+## EducationField, EmployeeCount, EmployeeNumber and 17 more;
+##  1 tentative attributes left: BusinessTravel;</code></pre>
+<pre class="r"><code>getSelectedAttributes(boruta.train, withTentative=F)</code></pre>
+<pre><code>##  [1] &quot;Age&quot;                     &quot;Attrition&quot;              
+##  [3] &quot;Department&quot;              &quot;Education&quot;              
+##  [5] &quot;JobLevel&quot;                &quot;JobRole&quot;                
+##  [7] &quot;NumCompaniesWorked&quot;      &quot;TotalWorkingYears&quot;      
+##  [9] &quot;YearsAtCompany&quot;          &quot;YearsInCurrentRole&quot;     
+## [11] &quot;YearsSinceLastPromotion&quot; &quot;YearsWithCurrManager&quot;</code></pre>
+<pre class="r"><code>boruta.df = attStats(boruta.train)
+print(boruta.df)</code></pre>
+<pre><code>##                              meanImp   medianImp     minImp     maxImp
+## ID                        0.11551586  0.01581657 -1.6903743  2.1646141
+## Age                      12.68517901 12.71552040 10.9863570 14.1535996
+## Attrition                 3.81794018  3.80564145  1.4454547  5.6743002
+## BusinessTravel            1.96816410  2.08030831 -0.8897753  4.7793100
+## DailyRate                -1.52618017 -1.79383070 -2.5946899  0.9248151
+## Department                6.41610437  6.29186013  5.1785078  8.1795386
+## DistanceFromHome          0.41734986  0.49758919 -1.6381730  2.6962946
+## Education                 3.03717956  3.09173656  0.9422391  4.8841547
+## EducationField            0.62873819  0.34172277 -0.1095353  2.1883005
+## EmployeeCount             0.00000000  0.00000000  0.0000000  0.0000000
+## EmployeeNumber           -0.54880842 -0.24242564 -2.3265594  0.6049094
+## EnvironmentSatisfaction   0.65362675  0.66488982 -0.7527816  2.0767240
+## Gender                    0.14677902  0.46938199 -1.3532984  1.9553132
+## HourlyRate               -0.36353963 -0.36513426 -1.6534333  0.8964609
+## JobInvolvement           -0.63964181 -0.61741130 -2.1643430  0.7918076
+## JobLevel                 41.55387168 42.51421838 32.0385236 44.8436155
+## JobRole                  14.85434988 14.91062183 12.2964067 17.5490285
+## JobSatisfaction          -0.49624605 -0.58322432 -1.9300691  1.1300784
+## MaritalStatus            -0.01292736  0.01183241 -1.0948991  1.5668815
+## MonthlyRate               0.56434629  0.43273184 -0.7646806  1.8254406
+## NumCompaniesWorked        7.89745065  7.93472277  6.1959024  9.3080324
+## Over18                    0.00000000  0.00000000  0.0000000  0.0000000
+## OverTime                 -0.32379826 -0.29264617 -1.7085356  0.5193743
+## PercentSalaryHike        -0.50772436 -0.39353423 -2.3846306  0.7984981
+## PerformanceRating        -0.31808044 -0.42223440 -1.6259414  1.2989319
+## RelationshipSatisfaction -0.24846688 -0.17118946 -2.2359178  1.8829568
+## StandardHours             0.00000000  0.00000000  0.0000000  0.0000000
+## StockOptionLevel         -0.13858964 -0.27915163 -1.3313000  1.3612956
+## TotalWorkingYears        23.43228145 23.35669874 21.2223486 25.4774469
+## TrainingTimesLastYear    -0.17898195 -0.12674522 -1.4561717  1.1000387
+## WorkLifeBalance          -0.72651564 -0.66976520 -3.3129813  1.3362916
+## YearsAtCompany           12.65615308 12.65593989 10.4696417 14.5832833
+## YearsInCurrentRole        8.78509322  8.74225425  7.1264702 11.4225586
+## YearsSinceLastPromotion   4.20847203  4.11762036  2.2716190  6.5677041
+## YearsWithCurrManager      7.06439087  7.05874287  5.0921357  9.0321690
+##                            normHits  decision
+## ID                       0.02020202  Rejected
+## Age                      1.00000000 Confirmed
+## Attrition                0.91919192 Confirmed
+## BusinessTravel           0.50505051 Tentative
+## DailyRate                0.00000000  Rejected
+## Department               1.00000000 Confirmed
+## DistanceFromHome         0.02020202  Rejected
+## Education                0.78787879 Confirmed
+## EducationField           0.00000000  Rejected
+## EmployeeCount            0.00000000  Rejected
+## EmployeeNumber           0.00000000  Rejected
+## EnvironmentSatisfaction  0.02020202  Rejected
+## Gender                   0.00000000  Rejected
+## HourlyRate               0.00000000  Rejected
+## JobInvolvement           0.00000000  Rejected
+## JobLevel                 1.00000000 Confirmed
+## JobRole                  1.00000000 Confirmed
+## JobSatisfaction          0.00000000  Rejected
+## MaritalStatus            0.01010101  Rejected
+## MonthlyRate              0.00000000  Rejected
+## NumCompaniesWorked       1.00000000 Confirmed
+## Over18                   0.00000000  Rejected
+## OverTime                 0.00000000  Rejected
+## PercentSalaryHike        0.00000000  Rejected
+## PerformanceRating        0.00000000  Rejected
+## RelationshipSatisfaction 0.01010101  Rejected
+## StandardHours            0.00000000  Rejected
+## StockOptionLevel         0.00000000  Rejected
+## TotalWorkingYears        1.00000000 Confirmed
+## TrainingTimesLastYear    0.00000000  Rejected
+## WorkLifeBalance          0.00000000  Rejected
+## YearsAtCompany           1.00000000 Confirmed
+## YearsInCurrentRole       1.00000000 Confirmed
+## YearsSinceLastPromotion  0.96969697 Confirmed
+## YearsWithCurrManager     1.00000000 Confirmed</code></pre>
+<pre class="r"><code>set.seed(4)
+trainIndicesMLR = sample(seq(1:dim(work_data2)[1]),round(.7*dim(work_data2)[1]))
+trainMLR = work_data2[trainIndicesMLR,]
+testMLR = work_data2[-trainIndicesMLR,]
+
+fit = lm(MonthlyIncome ~ Age + Attrition + Department + Education + JobLevel + JobRole + NumCompaniesWorked + TotalWorkingYears
+         + YearsAtCompany + YearsInCurrentRole + YearsSinceLastPromotion + YearsWithCurrManager, data=trainMLR)
+#summary(fit)
+ 
+preds = predict(fit, newdata=testMLR)
+
+#install.packages(&quot;Metrics&quot;)
+library(Metrics)</code></pre>
+<pre><code>## Warning: package &#39;Metrics&#39; was built under R version 4.0.5</code></pre>
+<pre><code>## 
+## Attaching package: &#39;Metrics&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:caret&#39;:
+## 
+##     precision, recall</code></pre>
+<pre class="r"><code>rmse(testMLR$MonthlyIncome, preds) #996.4812</code></pre>
+<pre><code>## [1] 988.8186</code></pre>
+<pre class="r"><code>fit1 = lm(MonthlyIncome ~ Attrition + Department + Education + JobLevel + JobRole + NumCompaniesWorked + TotalWorkingYears
+         + YearsAtCompany + YearsInCurrentRole + YearsSinceLastPromotion + YearsWithCurrManager, data=trainMLR)
+preds = predict(fit1, newdata=testMLR)
+rmse(testMLR$MonthlyIncome, preds) #996.5159</code></pre>
+<pre><code>## [1] 988.4029</code></pre>
+<pre class="r"><code>fit2 = lm(MonthlyIncome ~ Attrition + Department + Education + JobLevel + JobRole + NumCompaniesWorked + TotalWorkingYears
+         + YearsAtCompany + YearsInCurrentRole + YearsSinceLastPromotion, data=trainMLR)
+#summary(fit2)
+preds = predict(fit2, newdata=testMLR)
+rmse(testMLR$MonthlyIncome, preds) #995.4683</code></pre>
+<pre><code>## [1] 987.3947</code></pre>
+<pre class="r"><code>fit3 = lm(MonthlyIncome ~ Attrition + Department + Education + JobLevel + JobRole + NumCompaniesWorked + TotalWorkingYears
+         + YearsAtCompany + YearsSinceLastPromotion, data=trainMLR)
+#summary(fit3)
+preds = predict(fit3, newdata=testMLR)
+rmse(testMLR$MonthlyIncome, preds) #996.772</code></pre>
+<pre><code>## [1] 986.5766</code></pre>
+<pre class="r"><code>fit4 = lm(MonthlyIncome ~ Department + Education + JobLevel + JobRole + NumCompaniesWorked + TotalWorkingYears
+         + YearsAtCompany + YearsSinceLastPromotion, data=trainMLR)
+#summary(fit4)
+preds = predict(fit4, newdata=testMLR)
+rmse(testMLR$MonthlyIncome, preds) #996.2469</code></pre>
+<pre><code>## [1] 986.5725</code></pre>
+<pre class="r"><code>fit5 = lm(MonthlyIncome ~ Education + JobLevel + JobRole + NumCompaniesWorked + TotalWorkingYears
+         + YearsAtCompany + YearsSinceLastPromotion, data=trainMLR)
+#summary(fit5)
+preds = predict(fit5, newdata=testMLR)
+rmse(testMLR$MonthlyIncome, preds) #997.5464</code></pre>
+<pre><code>## [1] 987.7721</code></pre>
+<pre class="r"><code>fit6 = lm(MonthlyIncome ~ Department + JobLevel + JobRole + NumCompaniesWorked + TotalWorkingYears
+         + YearsAtCompany + YearsSinceLastPromotion, data=trainMLR)
+#summary(fit6)
+preds = predict(fit6, newdata=testMLR)
+rmse(testMLR$MonthlyIncome, preds) #1003.86</code></pre>
+<pre><code>## [1] 980.2898</code></pre>
+<pre class="r"><code>fit7 = lm(MonthlyIncome ~ Department + Education + JobLevel + JobRole + NumCompaniesWorked + TotalWorkingYears
+         + YearsAtCompany, data=trainMLR)
+#summary(fit7)
+preds = predict(fit7, newdata=testMLR)
+rmse(testMLR$MonthlyIncome, preds) #995.032</code></pre>
+<pre><code>## [1] 986.1651</code></pre>
+<pre class="r"><code>fit8 = lm(MonthlyIncome ~ Department + Education + JobLevel + JobRole + TotalWorkingYears
+         + YearsAtCompany, data=trainMLR)
+#summary(fit8)
+preds = predict(fit8, newdata=testMLR)
+rmse(testMLR$MonthlyIncome, preds) #993.2068</code></pre>
+<pre><code>## [1] 985.5218</code></pre>
+<pre class="r"><code>fit9 = lm(MonthlyIncome ~ Department + Education + JobLevel + JobRole + TotalWorkingYears, data=trainMLR)
+summary(fit9)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = MonthlyIncome ~ Department + Education + JobLevel + 
+##     JobRole + TotalWorkingYears, data = trainMLR)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3005.4  -688.7   -82.6   599.6  4285.0 
+## 
+## Coefficients:
+##                                   Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                       3261.672    583.851   5.586 3.54e-08 ***
+## DepartmentResearch &amp; Development   263.341    529.401   0.497    0.619    
+## DepartmentSales                   -257.426    546.107  -0.471    0.638    
+## Education2                          -6.347    155.504  -0.041    0.967    
+## Education3                         -63.575    142.969  -0.445    0.657    
+## Education4                         190.573    150.841   1.263    0.207    
+## Education5                        -361.883    267.223  -1.354    0.176    
+## JobLevel2                         1795.994    173.944  10.325  &lt; 2e-16 ***
+## JobLevel3                         4899.810    227.632  21.525  &lt; 2e-16 ***
+## JobLevel4                         8322.182    343.285  24.243  &lt; 2e-16 ***
+## JobLevel5                        11193.210    405.220  27.623  &lt; 2e-16 ***
+## JobRoleHuman Resources            -609.638    606.784  -1.005    0.315    
+## JobRoleLaboratory Technician     -1142.918    211.421  -5.406 9.38e-08 ***
+## JobRoleManager                    3708.832    327.658  11.319  &lt; 2e-16 ***
+## JobRoleManufacturing Director      273.243    191.441   1.427    0.154    
+## JobRoleResearch Director          3629.857    263.381  13.782  &lt; 2e-16 ***
+## JobRoleResearch Scientist         -905.271    214.043  -4.229 2.72e-05 ***
+## JobRoleSales Executive             539.217    406.997   1.325    0.186    
+## JobRoleSales Representative       -695.131    457.537  -1.519    0.129    
+## TotalWorkingYears                   39.312      9.355   4.202 3.05e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1021 on 589 degrees of freedom
+## Multiple R-squared:  0.9507, Adjusted R-squared:  0.9491 
+## F-statistic: 597.3 on 19 and 589 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>preds = predict(fit9, newdata=testMLR)
+rmse(testMLR$MonthlyIncome, preds) #985.2026 #WINNER</code></pre>
+<pre><code>## [1] 981.1599</code></pre>
+<pre class="r"><code>fit10 = lm(MonthlyIncome ~ Education + JobLevel + JobRole + TotalWorkingYears, data=trainMLR)
+#summary(fit10)
+preds = predict(fit10, newdata=testMLR)
+rmse(testMLR$MonthlyIncome, preds) #986.5401</code></pre>
+<pre><code>## [1] 982.599</code></pre>
+<p>The best model we found used Department, Education, Job Level, Job Role, and Total Working Years as predictors.Though not every indicator variable (for specific job roles, education levels, and job levels) was significant, we chose to keep them in the model.</p>
+<pre class="r"><code>#scatter plot matrix
+#pairs(trainMLR[,c(&quot;MonthlyIncome&quot;,&quot;Education&quot;, &quot;JobLevel&quot;,&quot;NumCompaniesWorked&quot;,&quot;TotalWorkingYears&quot;,&quot;YearsAtCompany&quot;,&quot;YearsSinceLastPromotion&quot;)])
+pairs(trainMLR[,c(&quot;MonthlyIncome&quot;,&quot;Education&quot;,&quot;JobLevel&quot;,&quot;TotalWorkingYears&quot;)])</code></pre>
+<p><img src="CaseStudy2_files/figure-html/MLR%20assumptions-1.png" width="672" /></p>
+<pre class="r"><code>#residual plot
+resid9 = resid(fit9)
+plot(trainMLR$MonthlyIncome, resid9,  ylab=&quot;Residuals&quot;, xlab=&quot;Monthly Income&quot;, main=&quot;Residuals&quot;) </code></pre>
+<p><img src="CaseStudy2_files/figure-html/MLR%20assumptions-2.png" width="672" /></p>
+<pre class="r"><code>#QQ plot
+qqnorm(resid9)</code></pre>
+<p><img src="CaseStudy2_files/figure-html/MLR%20assumptions-3.png" width="672" /> Addressing the assumptions:</p>
+<p>Linearity: There are linear relationships between the response variable (MonthlyIncome) and the explanatory variables in the model (fit9).</p>
+<p>Constant variance: The residual plot shows evidence of clustering. This is because the incomes tend to be around multiples of $25,000.</p>
+<p>Otherwise we don’t see evidence of increasing of decreasing standard deviations.</p>
+<p>Normality: The Q-Q plot shows the residuals are pretty close to normal.</p>
+<p>Independence: We will assume independence between observations.</p>
+<p>We will now make our predictions.</p>
+<pre class="r"><code>compset_noSal = read.csv(file.choose()) #CaseStudy2COmpSet No Salary
+head(compset_noSal)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["ï..ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Age"],"name":[2],"type":["int"],"align":["right"]},{"label":["Attrition"],"name":[3],"type":["chr"],"align":["left"]},{"label":["BusinessTravel"],"name":[4],"type":["chr"],"align":["left"]},{"label":["DailyRate"],"name":[5],"type":["int"],"align":["right"]},{"label":["Department"],"name":[6],"type":["chr"],"align":["left"]},{"label":["DistanceFromHome"],"name":[7],"type":["int"],"align":["right"]},{"label":["Education"],"name":[8],"type":["int"],"align":["right"]},{"label":["EducationField"],"name":[9],"type":["chr"],"align":["left"]},{"label":["EmployeeCount"],"name":[10],"type":["int"],"align":["right"]},{"label":["EmployeeNumber"],"name":[11],"type":["int"],"align":["right"]},{"label":["EnvironmentSatisfaction"],"name":[12],"type":["int"],"align":["right"]},{"label":["Gender"],"name":[13],"type":["chr"],"align":["left"]},{"label":["HourlyRate"],"name":[14],"type":["int"],"align":["right"]},{"label":["JobInvolvement"],"name":[15],"type":["int"],"align":["right"]},{"label":["JobLevel"],"name":[16],"type":["int"],"align":["right"]},{"label":["JobRole"],"name":[17],"type":["chr"],"align":["left"]},{"label":["JobSatisfaction"],"name":[18],"type":["int"],"align":["right"]},{"label":["MaritalStatus"],"name":[19],"type":["chr"],"align":["left"]},{"label":["MonthlyRate"],"name":[20],"type":["int"],"align":["right"]},{"label":["NumCompaniesWorked"],"name":[21],"type":["int"],"align":["right"]},{"label":["Over18"],"name":[22],"type":["chr"],"align":["left"]},{"label":["OverTime"],"name":[23],"type":["chr"],"align":["left"]},{"label":["PercentSalaryHike"],"name":[24],"type":["int"],"align":["right"]},{"label":["PerformanceRating"],"name":[25],"type":["int"],"align":["right"]},{"label":["RelationshipSatisfaction"],"name":[26],"type":["int"],"align":["right"]},{"label":["StandardHours"],"name":[27],"type":["int"],"align":["right"]},{"label":["StockOptionLevel"],"name":[28],"type":["int"],"align":["right"]},{"label":["TotalWorkingYears"],"name":[29],"type":["int"],"align":["right"]},{"label":["TrainingTimesLastYear"],"name":[30],"type":["int"],"align":["right"]},{"label":["WorkLifeBalance"],"name":[31],"type":["int"],"align":["right"]},{"label":["YearsAtCompany"],"name":[32],"type":["int"],"align":["right"]},{"label":["YearsInCurrentRole"],"name":[33],"type":["int"],"align":["right"]},{"label":["YearsSinceLastPromotion"],"name":[34],"type":["int"],"align":["right"]},{"label":["YearsWithCurrManager"],"name":[35],"type":["int"],"align":["right"]}],"data":[{"1":"871","2":"43","3":"No","4":"Travel_Frequently","5":"1422","6":"Sales","7":"2","8":"4","9":"Life Sciences","10":"1","11":"1849","12":"1","13":"Male","14":"92","15":"3","16":"2","17":"Sales Executive","18":"4","19":"Married","20":"19246","21":"1","22":"Y","23":"No","24":"20","25":"4","26":"3","27":"80","28":"1","29":"7","30":"5","31":"3","32":"7","33":"7","34":"7","35":"7","_rn_":"1"},{"1":"872","2":"33","3":"No","4":"Travel_Rarely","5":"461","6":"Research & Development","7":"13","8":"1","9":"Life Sciences","10":"1","11":"995","12":"2","13":"Female","14":"53","15":"3","16":"1","17":"Research Scientist","18":"4","19":"Single","20":"17241","21":"3","22":"Y","23":"No","24":"18","25":"3","26":"1","27":"80","28":"0","29":"5","30":"4","31":"3","32":"3","33":"2","34":"0","35":"2","_rn_":"2"},{"1":"873","2":"55","3":"Yes","4":"Travel_Rarely","5":"267","6":"Sales","7":"13","8":"4","9":"Marketing","10":"1","11":"1372","12":"1","13":"Male","14":"85","15":"4","16":"4","17":"Sales Executive","18":"3","19":"Single","20":"9277","21":"6","22":"Y","23":"Yes","24":"17","25":"3","26":"3","27":"80","28":"0","29":"24","30":"2","31":"2","32":"19","33":"7","34":"3","35":"8","_rn_":"3"},{"1":"874","2":"36","3":"No","4":"Non-Travel","5":"1351","6":"Research & Development","7":"9","8":"4","9":"Life Sciences","10":"1","11":"1949","12":"1","13":"Male","14":"66","15":"4","16":"1","17":"Laboratory Technician","18":"2","19":"Married","20":"9238","21":"1","22":"Y","23":"No","24":"22","25":"4","26":"2","27":"80","28":"0","29":"5","30":"3","31":"3","32":"5","33":"4","34":"0","35":"2","_rn_":"4"},{"1":"875","2":"27","3":"No","4":"Travel_Rarely","5":"1302","6":"Research & Development","7":"19","8":"3","9":"Other","10":"1","11":"1619","12":"4","13":"Male","14":"67","15":"2","16":"1","17":"Laboratory Technician","18":"1","19":"Divorced","20":"16290","21":"1","22":"Y","23":"No","24":"11","25":"3","26":"1","27":"80","28":"2","29":"7","30":"3","31":"3","32":"7","33":"7","34":"0","35":"7","_rn_":"5"},{"1":"876","2":"39","3":"Yes","4":"Travel_Rarely","5":"895","6":"Sales","7":"5","8":"3","9":"Technical Degree","10":"1","11":"42","12":"4","13":"Male","14":"56","15":"3","16":"2","17":"Sales Representative","18":"4","19":"Married","20":"3335","21":"3","22":"Y","23":"No","24":"14","25":"3","26":"3","27":"80","28":"1","29":"19","30":"6","31":"4","32":"1","33":"0","34":"0","35":"0","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>for(i in 1:ncol(compset_noSal)){
+  if (sapply(compset_noSal, class)[i] == &quot;character&quot;){
+    compset_noSal[,i] = as.factor(compset_noSal[,i])
+  }
+}
+
+compset_noSal$Education = as.factor(compset_noSal$Education)
+compset_noSal$JobLevel = as.factor(compset_noSal$JobLevel)
+
+comppreds = data.frame(&quot;ID&quot; = compset_noSal$ï..ID, &quot;MonthlySalary&quot; = predict(fit9, newdata=compset_noSal))
+
+head(comppreds)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["MonthlySalary"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"871","2":"5805.214","_rn_":"1"},{"1":"872","2":"2816.302","_rn_":"2"},{"1":"873","2":"12999.702","_rn_":"3"},{"1":"874","2":"2769.228","_rn_":"4"},{"1":"875","2":"2593.704","_rn_":"5"},{"1":"876","2":"4788.460","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>write.csv(comppreds, &quot;Case2PredictionsEndler Salary.csv&quot;, row.names=FALSE)</code></pre>
+<p>Find insights about specific job roles</p>
+<pre class="r"><code>head(work_data2)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Age"],"name":[2],"type":["int"],"align":["right"]},{"label":["Attrition"],"name":[3],"type":["fct"],"align":["left"]},{"label":["BusinessTravel"],"name":[4],"type":["fct"],"align":["left"]},{"label":["DailyRate"],"name":[5],"type":["int"],"align":["right"]},{"label":["Department"],"name":[6],"type":["fct"],"align":["left"]},{"label":["DistanceFromHome"],"name":[7],"type":["int"],"align":["right"]},{"label":["Education"],"name":[8],"type":["fct"],"align":["left"]},{"label":["EducationField"],"name":[9],"type":["fct"],"align":["left"]},{"label":["EmployeeCount"],"name":[10],"type":["int"],"align":["right"]},{"label":["EmployeeNumber"],"name":[11],"type":["int"],"align":["right"]},{"label":["EnvironmentSatisfaction"],"name":[12],"type":["int"],"align":["right"]},{"label":["Gender"],"name":[13],"type":["fct"],"align":["left"]},{"label":["HourlyRate"],"name":[14],"type":["int"],"align":["right"]},{"label":["JobInvolvement"],"name":[15],"type":["int"],"align":["right"]},{"label":["JobLevel"],"name":[16],"type":["fct"],"align":["left"]},{"label":["JobRole"],"name":[17],"type":["fct"],"align":["left"]},{"label":["JobSatisfaction"],"name":[18],"type":["int"],"align":["right"]},{"label":["MaritalStatus"],"name":[19],"type":["fct"],"align":["left"]},{"label":["MonthlyIncome"],"name":[20],"type":["int"],"align":["right"]},{"label":["MonthlyRate"],"name":[21],"type":["int"],"align":["right"]},{"label":["NumCompaniesWorked"],"name":[22],"type":["int"],"align":["right"]},{"label":["Over18"],"name":[23],"type":["fct"],"align":["left"]},{"label":["OverTime"],"name":[24],"type":["fct"],"align":["left"]},{"label":["PercentSalaryHike"],"name":[25],"type":["int"],"align":["right"]},{"label":["PerformanceRating"],"name":[26],"type":["int"],"align":["right"]},{"label":["RelationshipSatisfaction"],"name":[27],"type":["int"],"align":["right"]},{"label":["StandardHours"],"name":[28],"type":["int"],"align":["right"]},{"label":["StockOptionLevel"],"name":[29],"type":["int"],"align":["right"]},{"label":["TotalWorkingYears"],"name":[30],"type":["int"],"align":["right"]},{"label":["TrainingTimesLastYear"],"name":[31],"type":["int"],"align":["right"]},{"label":["WorkLifeBalance"],"name":[32],"type":["int"],"align":["right"]},{"label":["YearsAtCompany"],"name":[33],"type":["int"],"align":["right"]},{"label":["YearsInCurrentRole"],"name":[34],"type":["int"],"align":["right"]},{"label":["YearsSinceLastPromotion"],"name":[35],"type":["int"],"align":["right"]},{"label":["YearsWithCurrManager"],"name":[36],"type":["int"],"align":["right"]}],"data":[{"1":"1","2":"32","3":"No","4":"Travel_Rarely","5":"117","6":"Sales","7":"13","8":"4","9":"Life Sciences","10":"1","11":"859","12":"2","13":"Male","14":"73","15":"3","16":"2","17":"Sales Executive","18":"4","19":"Divorced","20":"4403","21":"9250","22":"2","23":"Y","24":"No","25":"11","26":"3","27":"3","28":"80","29":"1","30":"8","31":"3","32":"2","33":"5","34":"2","35":"0","36":"3","_rn_":"1"},{"1":"2","2":"40","3":"No","4":"Travel_Rarely","5":"1308","6":"Research & Development","7":"14","8":"3","9":"Medical","10":"1","11":"1128","12":"3","13":"Male","14":"44","15":"2","16":"5","17":"Research Director","18":"3","19":"Single","20":"19626","21":"17544","22":"1","23":"Y","24":"No","25":"14","26":"3","27":"1","28":"80","29":"0","30":"21","31":"2","32":"4","33":"20","34":"7","35":"4","36":"9","_rn_":"2"},{"1":"3","2":"35","3":"No","4":"Travel_Frequently","5":"200","6":"Research & Development","7":"18","8":"2","9":"Life Sciences","10":"1","11":"1412","12":"3","13":"Male","14":"60","15":"3","16":"3","17":"Manufacturing Director","18":"4","19":"Single","20":"9362","21":"19944","22":"2","23":"Y","24":"No","25":"11","26":"3","27":"3","28":"80","29":"0","30":"10","31":"2","32":"3","33":"2","34":"2","35":"2","36":"2","_rn_":"3"},{"1":"4","2":"32","3":"No","4":"Travel_Rarely","5":"801","6":"Sales","7":"1","8":"4","9":"Marketing","10":"1","11":"2016","12":"3","13":"Female","14":"48","15":"3","16":"3","17":"Sales Executive","18":"4","19":"Married","20":"10422","21":"24032","22":"1","23":"Y","24":"No","25":"19","26":"3","27":"3","28":"80","29":"2","30":"14","31":"3","32":"3","33":"14","34":"10","35":"5","36":"7","_rn_":"4"},{"1":"5","2":"24","3":"No","4":"Travel_Frequently","5":"567","6":"Research & Development","7":"2","8":"1","9":"Technical Degree","10":"1","11":"1646","12":"1","13":"Female","14":"32","15":"3","16":"1","17":"Research Scientist","18":"4","19":"Single","20":"3760","21":"17218","22":"1","23":"Y","24":"Yes","25":"13","26":"3","27":"3","28":"80","29":"0","30":"6","31":"2","32":"3","33":"6","34":"3","35":"1","36":"3","_rn_":"5"},{"1":"6","2":"27","3":"No","4":"Travel_Frequently","5":"294","6":"Research & Development","7":"10","8":"2","9":"Life Sciences","10":"1","11":"733","12":"4","13":"Male","14":"32","15":"3","16":"3","17":"Manufacturing Director","18":"1","19":"Divorced","20":"8793","21":"4809","22":"1","23":"Y","24":"No","25":"21","26":"4","27":"3","28":"80","29":"2","30":"9","31":"4","32":"2","33":"9","34":"7","35":"1","36":"7","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>work_data2 %&gt;% group_by(JobRole) %&gt;% summarize(
+  meanAge = mean(Age),
+  modeBusinessTravel = getmode(BusinessTravel),
+  modeDept = getmode(Department),
+  meanDistanceFromHome = mean(DistanceFromHome),
+  meanEd = mean(Education),
+  meanEnvSat = mean(EnvironmentSatisfaction),
+  modeGender = getmode(Gender),
+  meanHourly = mean(HourlyRate),
+  meanJobInvolvement = mean(JobInvolvement),
+  meanJobSat = mean(JobSatisfaction),
+  modeMarital = getmode(MaritalStatus),
+  meanCompaniesWorked = mean(NumCompaniesWorked),
+  modeOvertime = getmode(OverTime),
+  meanPercentSalaryHike = mean(PercentSalaryHike),
+  meanPerfRating = mean(PerformanceRating),
+  meanRelationshipSat = mean(RelationshipSatisfaction),
+  meanStandardHours = mean(StandardHours),
+  modeStock = getmode(StockOptionLevel),
+  meanWorkingYears = mean(TotalWorkingYears),
+  meanTrainings = mean(TrainingTimesLastYear),
+  meanWorkLife = mean(WorkLifeBalance),
+  meanYearsAtCo = mean(YearsAtCompany),
+  meanYearsinRole = mean(YearsInCurrentRole),
+  meanYearsSincePromo = mean(YearsSinceLastPromotion),
+  meanYearsWithMan = mean(YearsWithCurrManager)
+)</code></pre>
+<pre><code>## Warning in mean.default(Education): argument is not numeric or logical:
+## returning NA
+
+## Warning in mean.default(Education): argument is not numeric or logical:
+## returning NA
+
+## Warning in mean.default(Education): argument is not numeric or logical:
+## returning NA
+
+## Warning in mean.default(Education): argument is not numeric or logical:
+## returning NA
+
+## Warning in mean.default(Education): argument is not numeric or logical:
+## returning NA
+
+## Warning in mean.default(Education): argument is not numeric or logical:
+## returning NA
+
+## Warning in mean.default(Education): argument is not numeric or logical:
+## returning NA
+
+## Warning in mean.default(Education): argument is not numeric or logical:
+## returning NA
+
+## Warning in mean.default(Education): argument is not numeric or logical:
+## returning NA</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["JobRole"],"name":[1],"type":["fct"],"align":["left"]},{"label":["meanAge"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["modeBusinessTravel"],"name":[3],"type":["fct"],"align":["left"]},{"label":["modeDept"],"name":[4],"type":["fct"],"align":["left"]},{"label":["meanDistanceFromHome"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["meanEd"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["meanEnvSat"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["modeGender"],"name":[8],"type":["fct"],"align":["left"]},{"label":["meanHourly"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["meanJobInvolvement"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["meanJobSat"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["modeMarital"],"name":[12],"type":["fct"],"align":["left"]},{"label":["meanCompaniesWorked"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["modeOvertime"],"name":[14],"type":["fct"],"align":["left"]},{"label":["meanPercentSalaryHike"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["meanPerfRating"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["meanRelationshipSat"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["meanStandardHours"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["modeStock"],"name":[19],"type":["int"],"align":["right"]},{"label":["meanWorkingYears"],"name":[20],"type":["dbl"],"align":["right"]},{"label":["meanTrainings"],"name":[21],"type":["dbl"],"align":["right"]},{"label":["meanWorkLife"],"name":[22],"type":["dbl"],"align":["right"]},{"label":["meanYearsAtCo"],"name":[23],"type":["dbl"],"align":["right"]},{"label":["meanYearsinRole"],"name":[24],"type":["dbl"],"align":["right"]},{"label":["meanYearsSincePromo"],"name":[25],"type":["dbl"],"align":["right"]},{"label":["meanYearsWithMan"],"name":[26],"type":["dbl"],"align":["right"]}],"data":[{"1":"Healthcare Representative","2":"39.25000","3":"Travel_Rarely","4":"Research & Development","5":"9.802632","6":"NA","7":"2.750000","8":"Male","9":"67.26316","10":"2.842105","11":"2.828947","12":"Married","13":"2.631579","14":"No","15":"15.30263","16":"3.144737","17":"2.644737","18":"80","19":"1","20":"13.763158","21":"2.789474","22":"2.671053","23":"8.736842","24":"4.802632","25":"3.065789","26":"4.736842"},{"1":"Human Resources","2":"34.11111","3":"Travel_Rarely","4":"Human Resources","5":"9.666667","6":"NA","7":"2.703704","8":"Male","9":"62.74074","10":"2.777778","11":"2.555556","12":"Married","13":"2.148148","14":"No","15":"15.11111","16":"3.148148","17":"2.962963","18":"80","19":"0","20":"6.111111","21":"2.740741","22":"2.962963","23":"4.592593","24":"2.703704","25":"1.259259","26":"3.074074"},{"1":"Laboratory Technician","2":"34.13072","3":"Travel_Rarely","4":"Research & Development","5":"9.405229","6":"NA","7":"2.790850","8":"Male","9":"65.66013","10":"2.647059","11":"2.686275","12":"Married","13":"2.581699","14":"No","15":"15.02614","16":"3.163399","17":"2.732026","18":"80","19":"0","20":"7.875817","21":"3.150327","22":"2.764706","23":"5.326797","24":"3.313725","25":"1.464052","26":"3.450980"},{"1":"Manager","2":"47.54902","3":"Travel_Rarely","4":"Research & Development","5":"8.058824","6":"NA","7":"2.627451","8":"Male","9":"68.31373","10":"2.666667","11":"2.509804","12":"Married","13":"3.450980","14":"No","15":"14.98039","16":"3.196078","17":"2.803922","18":"80","19":"1","20":"24.686275","21":"2.725490","22":"2.764706","23":"13.784314","24":"6.431373","25":"4.490196","26":"6.098039"},{"1":"Manufacturing Director","2":"38.25287","3":"Travel_Rarely","4":"Research & Development","5":"9.735632","6":"NA","7":"3.000000","8":"Male","9":"64.79310","10":"2.643678","11":"2.724138","12":"Married","13":"2.666667","14":"No","15":"15.70115","16":"3.206897","17":"2.770115","18":"80","19":"1","20":"12.402299","21":"2.655172","22":"2.850575","23":"7.896552","24":"5.471264","25":"2.321839","26":"5.080460"},{"1":"Research Director","2":"43.68627","3":"Travel_Rarely","4":"Research & Development","5":"9.137255","6":"NA","7":"2.450980","8":"Male","9":"65.31373","10":"2.882353","11":"2.490196","12":"Married","13":"3.725490","14":"No","15":"14.90196","16":"3.078431","17":"2.588235","18":"80","19":"0","20":"20.980392","21":"2.803922","22":"2.862745","23":"10.235294","24":"5.803922","25":"2.627451","26":"5.607843"},{"1":"Research Scientist","2":"34.76163","3":"Travel_Rarely","4":"Research & Development","5":"9.186047","6":"NA","7":"2.627907","8":"Male","9":"65.81395","10":"2.796512","11":"2.802326","12":"Married","13":"2.802326","14":"No","15":"15.58721","16":"3.151163","17":"2.686047","18":"80","19":"0","20":"7.744186","21":"2.633721","22":"2.691860","23":"5.110465","24":"3.197674","25":"1.558140","26":"3.156977"},{"1":"Sales Executive","2":"36.69500","3":"Travel_Rarely","4":"Sales","5":"9.790000","6":"NA","7":"2.640000","8":"Male","9":"64.89000","10":"2.705000","11":"2.725000","12":"Married","13":"2.770000","14":"No","15":"14.92000","16":"3.145000","17":"2.685000","18":"80","19":"0","20":"11.125000","21":"2.860000","22":"2.820000","23":"7.540000","24":"4.755000","25":"2.510000","26":"4.785000"},{"1":"Sales Representative","2":"30.49057","3":"Travel_Rarely","4":"Sales","5":"7.886792","6":"NA","7":"2.660377","8":"Male","9":"65.69811","10":"2.603774","11":"2.698113","12":"Single","13":"1.622642","14":"No","15":"15.07547","16":"3.094340","17":"2.660377","18":"80","19":"0","20":"4.433962","21":"2.981132","22":"2.867925","23":"2.924528","24":"2.113208","25":"1.150943","26":"1.735849"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Manufacturing Directors have the most environment satisfaction on average, while Research Directors have the lowest.</p>
+<p>Research Directors have the highest education on average. Most Sales Reps are single, while most people in every other position are married.</p>
+<p>Human Resources have the highest relationship satisfaction and highest work life balance score.</p>
+<p>Healthcare Reps have the highest job satisfaction. Research Directors have the lowest.</p>
+<pre class="r"><code>#visualize departments and job roles
+work_data2 %&gt;% group_by(JobRole, Department) %&gt;% summarize(Pop = length(JobRole))</code></pre>
+<pre><code>## `summarise()` regrouping output by &#39;JobRole&#39; (override with `.groups` argument)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["JobRole"],"name":[1],"type":["fct"],"align":["left"]},{"label":["Department"],"name":[2],"type":["fct"],"align":["left"]},{"label":["Pop"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"Healthcare Representative","2":"Research & Development","3":"76"},{"1":"Human Resources","2":"Human Resources","3":"27"},{"1":"Laboratory Technician","2":"Research & Development","3":"153"},{"1":"Manager","2":"Human Resources","3":"8"},{"1":"Manager","2":"Research & Development","3":"23"},{"1":"Manager","2":"Sales","3":"20"},{"1":"Manufacturing Director","2":"Research & Development","3":"87"},{"1":"Research Director","2":"Research & Development","3":"51"},{"1":"Research Scientist","2":"Research & Development","3":"172"},{"1":"Sales Executive","2":"Sales","3":"200"},{"1":"Sales Representative","2":"Sales","3":"53"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>work_data2 %&gt;% group_by(JobRole, Department) %&gt;% summarize(Pop = length(JobRole)) %&gt;% ggplot(aes(x=JobRole, y=Pop, fill=Department, label=Pop)) +
+  geom_bar(stat=&quot;identity&quot;) +
+  geom_text(nudge_y = 10) +
+  coord_flip() +
+  ggtitle(&quot;Employees by Role&quot;) +
+  xlab(&quot;Role&quot;) +
+  ylab(&quot;Number of Employees&quot;)</code></pre>
+<pre><code>## `summarise()` regrouping output by &#39;JobRole&#39; (override with `.groups` argument)</code></pre>
+<p><img src="CaseStudy2_files/figure-html/insights2-1.png" width="672" /></p>
+<p>Here we see the number of employees in each role, colored by department.</p>
+<pre class="r"><code>#jobsat
+work_data2 %&gt;% group_by(JobRole) %&gt;% summarize(meanJobSat=mean(JobSatisfaction)) %&gt;% ggplot(aes(x=JobRole, y=meanJobSat, fill=JobRole, label=round(meanJobSat, 2))) + 
+  geom_bar(stat=&quot;identity&quot;) + 
+  theme(axis.text.x = element_text(angle = 90)) + 
+  geom_text(position=position_dodge(0.5), vjust=-0.25) +
+  ggtitle(&quot;Average Job Satisfaction by Role&quot;) +
+  ylab(&quot;Mean Job Satisfaction&quot;) +
+  xlab(&quot;Role&quot;)</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<p><img src="CaseStudy2_files/figure-html/insights%203-1.png" width="672" /></p>
+<pre class="r"><code>#envsat
+work_data2 %&gt;% group_by(JobRole) %&gt;% summarize(meanEnvSat=mean(EnvironmentSatisfaction)) %&gt;% ggplot(aes(x=JobRole, y=meanEnvSat, fill=JobRole, label=round(meanEnvSat, 2))) + 
+  geom_bar(stat=&quot;identity&quot;) + 
+  theme(axis.text.x = element_text(angle = 90)) + 
+  geom_text(position=position_dodge(0.5), vjust=-0.25) +
+  ggtitle(&quot;Average Environment Satisfaction by Role&quot;) +
+  ylab(&quot;Mean Environment Satisfaction&quot;) +
+  xlab(&quot;Role&quot;)</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<p><img src="CaseStudy2_files/figure-html/insights%203-2.png" width="672" /></p>
+<pre class="r"><code>#job involvement
+work_data2 %&gt;% group_by(JobRole) %&gt;% summarize(meanJobInv=mean(JobInvolvement)) %&gt;% ggplot(aes(x=JobRole, y=meanJobInv, fill=JobRole, label=round(meanJobInv, 2))) + 
+  geom_bar(stat=&quot;identity&quot;) + 
+  theme(axis.text.x = element_text(angle = 90)) + 
+  geom_text(position=position_dodge(0.5), vjust=-0.25) +
+  ggtitle(&quot;Average Job Involvement by Role&quot;) +
+  ylab(&quot;Mean Job Involvement&quot;) +
+  xlab(&quot;Role&quot;)</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<p><img src="CaseStudy2_files/figure-html/insights%203-3.png" width="672" /></p>
+<pre class="r"><code>work_data2 %&gt;% group_by(JobRole) %&gt;% summarize(meanWorkLife=mean(WorkLifeBalance)) %&gt;% ggplot(aes(x=JobRole, y=meanWorkLife, fill=JobRole, label=round(meanWorkLife, 2))) + 
+  geom_bar(stat=&quot;identity&quot;) + 
+  theme(axis.text.x = element_text(angle = 90)) + 
+  geom_text(position=position_dodge(0.5), vjust=-0.25) +
+  ggtitle(&quot;Average Work-Life Balance Rating by Role&quot;) +
+  ylab(&quot;Mean Work-Life Balance Rating&quot;) +
+  xlab(&quot;Role&quot;)</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<p><img src="CaseStudy2_files/figure-html/insights%203-4.png" width="672" /></p>
+<p>Here we see average job involvement, job satisfaction, and environment satisfaction by job role. Notably, research directors have the lowest job and environment satisfaction, and the highest job involvement.</p>
+<p>We were tasked with finding a model to predict attrition, a model to predict monthly salary, and insights on job role trends. We attempted to create these models using KNN and Naive Bayes, and Multiple Linear Regression. Ultimately, the Naive Bayes Model performed the best in regards to predicting attrition. The multiple linear regression model was used to predict monthly salary. Most notably, we found that research directors are least satisfied with their jobs and environments and most involved with their jobs.</p>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
